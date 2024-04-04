@@ -12,12 +12,19 @@ const mongoose_1 = require("@nestjs/mongoose");
 const auth_service_1 = require("./auth.service");
 const auth_controller_1 = require("./auth.controller");
 const user_model_1 = require("./user.model");
+const jwt_1 = require("@nestjs/jwt");
 let AuthModule = class AuthModule {
 };
 exports.AuthModule = AuthModule;
 exports.AuthModule = AuthModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name, schema: user_model_1.UserSchema }])],
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name, schema: user_model_1.UserSchema }]),
+            jwt_1.JwtModule.register({
+                secret: 'abcd',
+                signOptions: { expiresIn: '30m' },
+            }),
+        ],
         providers: [auth_service_1.AuthService],
         controllers: [auth_controller_1.AuthController],
     })

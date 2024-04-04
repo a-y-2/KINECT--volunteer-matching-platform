@@ -1,6 +1,12 @@
-import { UserDocument } from './user.model';
+import { User } from './user.model';
+import { JwtService } from '@nestjs/jwt';
 export declare class AuthService {
     private readonly userModel;
-    constructor(userModel: any);
-    login(email: string, password: string): Promise<UserDocument | string>;
+    private readonly jwtService;
+    constructor(userModel: any, jwtService: JwtService);
+    login(email: string, password: string): Promise<{
+        token: string;
+        message?: string;
+    }>;
+    validateUserByJwt(payload: any): Promise<User | null>;
 }

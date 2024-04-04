@@ -5,5 +5,8 @@ export declare class AuthController {
     login(loginDto: {
         email: string;
         password: string;
-    }): Promise<import("./user.model").UserDocument>;
+    }): Promise<{
+        token: string;
+        message?: string;
+    }>;
 }

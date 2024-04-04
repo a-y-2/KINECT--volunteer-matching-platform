@@ -17,32 +17,41 @@ const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const user_model_1 = require("./user.model");
 const bcrypt = require("bcryptjs");
+const jwt_1 = require("@nestjs/jwt");
 let AuthService = class AuthService {
-    constructor(userModel) {
+    constructor(userModel, jwtService) {
         this.userModel = userModel;
+        this.jwtService = jwtService;
     }
     async login(email, password) {
         try {
             const user = await this.userModel.findOne({ email });
             if (!user) {
-                return 'Invalid email or password';
+                return { token: null, message: 'Invalid email or password' };
             }
             const isPasswordMatch = await bcrypt.compare(password, user.password);
             if (!isPasswordMatch) {
-                return 'Invalid email or password';
+                return { token: null, message: 'Invalid email or password' };
             }
-            return { ...user._doc, password: undefined };
+            const payload = { userId: user._id };
+            const token = await this.jwtService.sign(payload);
+            return { token };
         }
         catch (error) {
             console.error('Error during login:', error);
             throw new Error('Internal server error');
         }
     }
+    async validateUserByJwt(payload) {
+        const userId = payload.userId;
+        const user = await this.userModel.findById(userId);
+        return user;
+    }
 };
 exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(user_model_1.User.name)),
-    __metadata("design:paramtypes", [Object])
+    __metadata("design:paramtypes", [Object, jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
