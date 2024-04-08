@@ -8,7 +8,4 @@ export declare class CreateNpoDto {
     mission?: string;
     causes?: string[];
     contactEmail?: string;
-    socialMedia?: {
-        [key: string]: string;
-    };
 }

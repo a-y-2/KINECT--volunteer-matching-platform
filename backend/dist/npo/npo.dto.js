@@ -59,8 +59,4 @@ __decorate([
     (0, class_validator_1.IsEmail)(),
     __metadata("design:type", String)
 ], CreateNpoDto.prototype, "contactEmail", void 0);
-__decorate([
-    (0, class_validator_1.IsOptional)(),
-    __metadata("design:type", Object)
-], CreateNpoDto.prototype, "socialMedia", void 0);
 //# sourceMappingURL=npo.dto.js.map

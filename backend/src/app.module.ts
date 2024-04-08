@@ -4,7 +4,8 @@ import { AppService } from './app.service';
 import { UserModule} from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './user/auth.module';
-import { NpoModule} from './org/npo.module';
+import { AuthModuleNpo } from './npo/auth.module';
+import { NpoModule} from './npo/npo.module';
 
 
 /*
@@ -17,6 +18,7 @@ import { NpoModule} from './org/npo.module';
   imports: [MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
             UserModule,  
             AuthModule, 
+            AuthModuleNpo,
             NpoModule   
   ],
   controllers: [AppController],

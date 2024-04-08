@@ -37,6 +37,6 @@ export class CreateNpoDto {
   @IsEmail()
   contactEmail?: string;
 
-  @IsOptional()
-  socialMedia?: { [key: string]: string }; // Object for social media links
+  // @IsOptional()
+  // socialMedia?: { [key: string]: string }; // Object for social media links
 }
