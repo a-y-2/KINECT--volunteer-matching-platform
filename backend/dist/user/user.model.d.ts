@@ -29,6 +29,10 @@ export declare class User extends Document {
     password: string;
     firstName: string;
     lastName: string;
+    dob: Date;
+    zipcode: string;
+    city: string;
+    state: string;
     skills: string[];
     interests: string[];
 }

@@ -21,15 +21,11 @@ let UserService = class UserService {
     constructor(userModel) {
         this.userModel = userModel;
     }
-    async register(email, password, firstName, lastName, skills, interests) {
-        const encryptedPassword = await this.hashPassword(password);
+    async register(createUserDto) {
+        const encryptedPassword = await this.hashPassword(createUserDto.password);
         const user = await this.create({
-            email,
+            ...createUserDto,
             password: encryptedPassword,
-            firstName,
-            lastName,
-            skills,
-            interests
         });
         return user;
     }

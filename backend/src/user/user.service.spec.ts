@@ -55,6 +55,10 @@ The function takes an object as an argument, configuring the module's providers
         password: 'password123',
         firstName: 'John',
         lastName: 'Doe',
+        zipcode:'10000',
+        city:'nyc',
+        state:'nyc',
+        dob: new Date('1990-01-01'),
         skills: ['JavaScript', 'Node.js'],
         interests: ['Reading', 'Sports'],
       };
@@ -70,15 +74,12 @@ The function takes an object as an argument, configuring the module's providers
 
       userModelMock.create.mockResolvedValue(expectedUser);
 
-      const result = await service.register(
-        mockUserInput.email,
-        mockUserInput.password,
-        mockUserInput.firstName,
-        mockUserInput.lastName,
-        mockUserInput.skills,
-        mockUserInput.interests,
-      );
-
+      const mockUserInputObject = {
+        ...mockUserInput, // Spread operator includes all properties
+      };
+      
+      const result = await service.register(mockUserInputObject);
+      
       expect(result).toEqual(expectedUser);
 
       // Verify that create method was called with the correct arguments
@@ -87,6 +88,10 @@ The function takes an object as an argument, configuring the module's providers
         password: 'hashedPassword',
         firstName: mockUserInput.firstName,
         lastName: mockUserInput.lastName,
+        zipcode: mockUserInput.zipcode,
+        city: mockUserInput.city,
+        state: mockUserInput.state,
+        dob: mockUserInput.dob,
         skills: mockUserInput.skills,
         interests: mockUserInput.interests,
       });

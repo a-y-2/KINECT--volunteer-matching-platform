@@ -14,6 +14,18 @@ export class CreateUserDto {
   @IsString()
   lastName?: string;
 
+  @IsString()
+  zipcode?: string;
+
+  @IsString()
+  city?: string;
+
+  @IsString()
+  state?: string;
+
+  @IsString()
+  dob?: Date;
+
   @IsString({ each: true }) 
   skills?: string[];
 

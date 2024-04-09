@@ -15,6 +15,18 @@ export class User extends Document {
   @Prop()
   lastName: string;
 
+  @Prop({ type: Date, required: true })
+  dob: Date;
+
+  @Prop()
+  zipcode: string;
+
+  @Prop()
+  city: string;
+
+  @Prop()
+  state: string;
+
   @Prop()
   skills: string[]; // Array of skills the user possesses
 

@@ -1,7 +1,8 @@
 import { CreateUserDto } from './user.dto';
 import { UserService } from './user.service';
+import { UserDocument } from './user.model';
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
-    register({ email, password, firstName, lastName, skills, interests }: CreateUserDto, session: any): Promise<import("./user.model").UserDocument>;
+    register(createUserDto: CreateUserDto): Promise<UserDocument>;
 }

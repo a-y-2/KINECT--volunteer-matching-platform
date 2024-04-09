@@ -20,8 +20,8 @@ let UserController = class UserController {
     constructor(userService) {
         this.userService = userService;
     }
-    async register({ email, password, firstName, lastName, skills, interests }, session) {
-        const user = await this.userService.register(email, password, firstName, lastName, skills, interests);
+    async register(createUserDto) {
+        const user = await this.userService.register(createUserDto);
         return user;
     }
 };
@@ -29,9 +29,8 @@ exports.UserController = UserController;
 __decorate([
     (0, common_1.Post)('register'),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Session)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [user_dto_1.CreateUserDto, Object]),
+    __metadata("design:paramtypes", [user_dto_1.CreateUserDto]),
     __metadata("design:returntype", Promise)
 ], UserController.prototype, "register", null);
 exports.UserController = UserController = __decorate([

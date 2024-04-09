@@ -1,8 +1,9 @@
 import { UserDocument } from './user.model';
+import { CreateUserDto } from './user.dto';
 export declare class UserService {
     private readonly userModel;
     constructor(userModel: any);
-    register(email: string, password: string, firstName: string, lastName: string, skills: string[], interests: string[]): Promise<UserDocument>;
+    register(createUserDto: CreateUserDto): Promise<UserDocument>;
     create(user: Partial<UserDocument>): Promise<UserDocument>;
     private hashPassword;
 }
