@@ -13,7 +13,7 @@ export class AuthController {
       throw new HttpException(user, HttpStatus.BAD_REQUEST);
     }
     
-    // Send successful login response with user data (excluding sensitive info)
+    // Send successful  login response with user data (excluding sensitive info)
  // } catch (error) {
     // Handle login errors (e.g., invalid credentials)
     
