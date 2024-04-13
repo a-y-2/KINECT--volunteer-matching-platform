@@ -9,9 +9,9 @@ export class Volunteer {
   _id: string;
 
   @Prop({ required: true })
-  userId: ObjectId; // Reference to the user document (for email association)
+  userId: string; // Reference to the user document (for email association)
 
-  @Prop() // Exclude password from volunteer profile for security
+  @Prop() 
   profilePhoto: string; // URL or path to profile photo
 
   @Prop({ required: true })

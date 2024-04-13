@@ -22,11 +22,11 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Document, ObjectId } from 'mongoose';
+import { Document } from 'mongoose';
 export type VolunteerDocument = Volunteer & Document;
 export declare class Volunteer {
     _id: string;
-    userId: ObjectId;
+    userId: string;
     profilePhoto: string;
     name: string;
     phoneNo: string;

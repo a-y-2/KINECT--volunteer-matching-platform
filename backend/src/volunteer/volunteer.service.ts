@@ -16,12 +16,13 @@ export class VolunteerService {
   ) {}
 
   //takes a CreateVolunteerProfileDto object as input, which contains data for creating the profile.
-  async createVolunteerProfile(createVolunteerProfileDto: CreateVolunteerProfileDto,): Promise<Volunteer> {
+   async createVolunteerProfile(
+    createVolunteerProfileDto: any, // Assuming it includes userId
+    loggedInUserId: string,
+  ): Promise<Volunteer> {
+      // Set the userId property (assuming it's present in DTO)
+    createVolunteerProfileDto.userId = loggedInUserId;
 
-    /*
-    Creates a new instance of the Volunteer model using the provided DTO data (createVolunteerProfileDto).
-    Saves the newly created volunteer profile to the database using Mongoose's save() method and returns the saved document.
-    */
     const newVolunteer = new this.volunteerModel(createVolunteerProfileDto);
     return await newVolunteer.save();
   }

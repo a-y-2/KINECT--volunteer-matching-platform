@@ -6,6 +6,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { AuthModule } from './user/auth.module';
 import { AuthModuleNpo } from './npo/auth.module';
 import { NpoModule} from './npo/npo.module';
+import { VolunteerModule } from './volunteer/volunteer.module';
 
 
 /*
@@ -19,10 +20,11 @@ import { NpoModule} from './npo/npo.module';
             UserModule,  
             AuthModule, 
             AuthModuleNpo,
-            NpoModule   
+            NpoModule,
+            VolunteerModule   
   ],
   controllers: [AppController],
-  providers: [AppService,UserModule,NpoModule],
+  providers: [AppService,UserModule,NpoModule,VolunteerModule],
   //exports: [UserService],
 })
 export class AppModule {}

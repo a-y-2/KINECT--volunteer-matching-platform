@@ -15,6 +15,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const auth_module_1 = require("./user/auth.module");
 const auth_module_2 = require("./npo/auth.module");
 const npo_module_1 = require("./npo/npo.module");
+const volunteer_module_1 = require("./volunteer/volunteer.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -24,10 +25,11 @@ exports.AppModule = AppModule = __decorate([
             user_module_1.UserModule,
             auth_module_1.AuthModule,
             auth_module_2.AuthModuleNpo,
-            npo_module_1.NpoModule
+            npo_module_1.NpoModule,
+            volunteer_module_1.VolunteerModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule],
+        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule, volunteer_module_1.VolunteerModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

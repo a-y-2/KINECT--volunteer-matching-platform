@@ -20,7 +20,7 @@ __decorate([
 ], Volunteer.prototype, "_id", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Object)
+    __metadata("design:type", String)
 ], Volunteer.prototype, "userId", void 0);
 __decorate([
     (0, mongoose_1.Prop)(),
