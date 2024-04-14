@@ -15,7 +15,8 @@ const mongoose_1 = require("@nestjs/mongoose");
 const auth_module_1 = require("./user/auth.module");
 const auth_module_2 = require("./npo/auth.module");
 const npo_module_1 = require("./npo/npo.module");
-const volunteer_module_1 = require("./volunteer/volunteer.module");
+const user_profile_module_1 = require("./user-profile/user-profile.module");
+const auth_module_3 = require("./auth/auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -23,13 +24,15 @@ exports.AppModule = AppModule = __decorate([
     (0, common_1.Module)({
         imports: [mongoose_1.MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
             user_module_1.UserModule,
-            auth_module_1.AuthModule,
+            auth_module_1.AuthModuleUser,
+            AppModule,
             auth_module_2.AuthModuleNpo,
             npo_module_1.NpoModule,
-            volunteer_module_1.VolunteerModule
+            user_profile_module_1.UserProfileModule,
+            auth_module_3.AuthModule
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule, volunteer_module_1.VolunteerModule],
+        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule, user_profile_module_1.UserProfileModule, auth_module_1.AuthModuleUser, auth_module_3.AuthModule],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

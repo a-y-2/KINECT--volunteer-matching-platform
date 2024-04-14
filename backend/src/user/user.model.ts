@@ -1,5 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import * as bcrypt from 'bcrypt';
+
 export type UserDocument = User & Document;
 @Schema()
 export class User extends Document {
@@ -32,6 +34,11 @@ export class User extends Document {
 
   @Prop()
   interests: string[]; // Array of areas the user is interested in volunteering for
+
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    // Use bcrypt to compare the candidate password with the stored hashed password
+    return bcrypt.compare(candidatePassword, this.password);
+  }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

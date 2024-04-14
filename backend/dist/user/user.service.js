@@ -37,6 +37,12 @@ let UserService = class UserService {
         const salt = await bcrypt.genSalt(10);
         return bcrypt.hash(password, salt);
     }
+    async findByEmail(email) {
+        return this.userModel.findOne({ email }).exec();
+    }
+    async findById(id) {
+        return this.userModel.findById(id).exec();
+    }
 };
 exports.UserService = UserService;
 exports.UserService = UserService = __decorate([

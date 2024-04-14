@@ -6,17 +6,17 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.AuthModule = void 0;
+exports.AuthModuleUser = void 0;
 const common_1 = require("@nestjs/common");
 const mongoose_1 = require("@nestjs/mongoose");
 const auth_service_1 = require("./auth.service");
 const auth_controller_1 = require("./auth.controller");
 const user_model_1 = require("./user.model");
 const jwt_1 = require("@nestjs/jwt");
-let AuthModule = class AuthModule {
+let AuthModuleUser = class AuthModuleUser {
 };
-exports.AuthModule = AuthModule;
-exports.AuthModule = AuthModule = __decorate([
+exports.AuthModuleUser = AuthModuleUser;
+exports.AuthModuleUser = AuthModuleUser = __decorate([
     (0, common_1.Module)({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name, schema: user_model_1.UserSchema }]),
@@ -28,5 +28,5 @@ exports.AuthModule = AuthModule = __decorate([
         providers: [auth_service_1.AuthService],
         controllers: [auth_controller_1.AuthController],
     })
-], AuthModule);
+], AuthModuleUser);
 //# sourceMappingURL=auth.module.js.map

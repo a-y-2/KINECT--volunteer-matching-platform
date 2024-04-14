@@ -3,10 +3,15 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule} from './user/user.module';
 import { MongooseModule } from '@nestjs/mongoose';
-import { AuthModule } from './user/auth.module';
+import { AuthModuleUser } from './user/auth.module';
 import { AuthModuleNpo } from './npo/auth.module';
 import { NpoModule} from './npo/npo.module';
-import { VolunteerModule } from './volunteer/volunteer.module';
+import { UserProfileController } from './user-profile/user-profile.controller';
+import { UserProfileService } from './user-profile/user-profile.service';
+import { UserProfile, UserProfileSchema } from './user-profile/user-profile.schema';
+import { User, UserSchema } from './user/user.model';
+import { UserProfileModule } from './user-profile/user-profile.module';
+import { AuthModule } from './auth/auth.module';
 
 
 /*
@@ -18,13 +23,15 @@ import { VolunteerModule } from './volunteer/volunteer.module';
 @Module({
   imports: [MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
             UserModule,  
-            AuthModule, 
+            AuthModuleUser, 
+            AppModule,
             AuthModuleNpo,
             NpoModule,
-            VolunteerModule   
+            UserProfileModule,
+            AuthModule  
   ],
   controllers: [AppController],
-  providers: [AppService,UserModule,NpoModule,VolunteerModule],
+  providers: [AppService,UserModule,NpoModule,UserProfileModule,AuthModuleUser,AuthModule],
   //exports: [UserService],
 })
 export class AppModule {}
