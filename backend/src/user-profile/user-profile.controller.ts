@@ -13,7 +13,7 @@ This enables the controller to access methods from UserProfileService to handle 
   constructor(private readonly userProfileService: UserProfileService) {}
 
 @UseGuards(JwtAuthGuard)
-@Post('protected')
+@Post()
 async createUserProfile(@Req() req, @Body() createUserProfileDto: CreateUserProfileDto): Promise<UserProfile> {
   try {
     if (!req.user || !req.user.userId) {
