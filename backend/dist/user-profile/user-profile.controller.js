@@ -11,28 +11,55 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var UserProfileController_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserProfileController = void 0;
 const common_1 = require("@nestjs/common");
 const user_profile_service_1 = require("./user-profile.service");
 const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 const user_profile_dto_1 = require("./user-profile.dto");
-let UserProfileController = class UserProfileController {
+let UserProfileController = UserProfileController_1 = class UserProfileController {
     constructor(userProfileService) {
         this.userProfileService = userProfileService;
+        this.logger = new common_1.Logger(UserProfileController_1.name);
     }
     async createUserProfile(req, createUserProfileDto) {
         try {
-            if (!req.user || !req.user.userId) {
-                throw new common_1.NotFoundException('User not authenticated or userId not provided');
+            this.logger.log(`Received request to create user profile: ${JSON.stringify(createUserProfileDto)}`);
+            this.logRequestDetails(req);
+            if (!req.user) {
+                this.logger.warn('User not authenticated');
+                throw new common_1.NotFoundException('User not authenticated');
             }
-            const loggedInUserId = req.user.userId;
+            const loggedInUserId = req.user._id;
+            this.logger.log(`Extracted userId: ${loggedInUserId}`);
+            if (!loggedInUserId) {
+                this.logger.warn('userId not provided');
+                throw new common_1.NotFoundException('userId not provided');
+            }
             const userProfile = await this.userProfileService.createUserProfile(createUserProfileDto, loggedInUserId);
+            this.logger.log(`User profile created successfully`);
             return userProfile;
         }
         catch (error) {
-            console.error('Error creating user profile:', error);
+            this.logger.error(`Error creating user profile: ${error.message}`);
             throw error;
+        }
+    }
+    logRequestDetails(req) {
+        this.logger.log(`Request Method: ${req.method}`);
+        this.logger.log(`Request URL: ${req.url}`);
+        this.logger.log('Request Headers:');
+        for (const key of Object.keys(req.headers)) {
+            this.logger.log(`${key}: ${req.headers[key]}`);
+        }
+        if (req.body) {
+            this.logger.log('Request Body:');
+            this.logger.log(JSON.stringify(req.body));
+        }
+        if (req.user) {
+            this.logger.log('Authenticated User:');
+            this.logger.log(JSON.stringify(req.user));
         }
     }
     async getUserProfileById(id) {
@@ -84,7 +111,7 @@ __decorate([
     __metadata("design:paramtypes", [Object, String]),
     __metadata("design:returntype", Promise)
 ], UserProfileController.prototype, "deleteUserProfileById", null);
-exports.UserProfileController = UserProfileController = __decorate([
+exports.UserProfileController = UserProfileController = UserProfileController_1 = __decorate([
     (0, common_1.Controller)('user-profile'),
     __metadata("design:paramtypes", [user_profile_service_1.UserProfileService])
 ], UserProfileController);

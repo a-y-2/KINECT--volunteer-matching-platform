@@ -1,10 +1,12 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserProfile, UserProfileDocument } from './user-profile.schema';
 import { User, UserDocument } from '../user/user.model';
 import { NotFoundException } from '@nestjs/common'; // Import NotFoundException
-import mongoose from 'mongoose';
+import mongoose, { Types } from 'mongoose';
 import { CreateUserProfileDto } from './user-profile.dto';
+
+
 @Injectable()
 export class UserProfileService {
   constructor(
@@ -30,8 +32,19 @@ export class UserProfileService {
     return await newUserProfile.save();
   }
 
-  async getUserProfileById(id: string): Promise<UserProfile | null> {
-    return await this.userProfileModel.findById(id).populate('user', '-password'); // Exclude password
+  // async getUserProfileById(id: string): Promise<UserProfile | null> {
+  //   return await this.userProfileModel.findById(id).populate('user', '-password'); // Exclude password
+  // }
+
+  async getUserProfileById(id: string): Promise<UserProfileDocument> {
+    if (!Types.ObjectId.isValid(id))
+      throw new BadRequestException('Invalid user ID.');
+
+    const user = await this.userProfileModel.findById(id);
+
+    if (!user) throw new NotFoundException('User not found.');
+
+    return user;
   }
 
   async updateUserProfileById(

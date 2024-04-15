@@ -36,7 +36,12 @@ let UserProfileService = class UserProfileService {
         return await newUserProfile.save();
     }
     async getUserProfileById(id) {
-        return await this.userProfileModel.findById(id).populate('user', '-password');
+        if (!mongoose_2.Types.ObjectId.isValid(id))
+            throw new common_1.BadRequestException('Invalid user ID.');
+        const user = await this.userProfileModel.findById(id);
+        if (!user)
+            throw new common_2.NotFoundException('User not found.');
+        return user;
     }
     async updateUserProfileById(id, updateUserProfileDto, loggedInUserId) {
         const userProfile = await this.userProfileModel.findById(id);
