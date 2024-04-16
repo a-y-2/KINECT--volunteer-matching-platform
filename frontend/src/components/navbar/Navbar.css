@@ -1,0 +1,44 @@
+.navbar {
+    height: 80px;
+    background-color: white; /* Background color */
+  }
+  
+  .navbar-brand {
+    margin-right: auto;
+    margin-left: 20px;
+    margin-top: 10px;
+    background-color: white;
+    width: 60px;
+    border-radius: 10px;
+    height: 60px;
+    line-height: 60px;
+    text-align: center;
+  }
+
+  .navbar.navbar-expand-lg.navbar-light.bg-light {
+    background-color: rgb(255, 255, 255);
+    width: 500px;
+  }
+  
+  .container {
+    width: 50px;
+    height: 60px;
+    margin: 0 auto;
+    border-radius: 10px;
+    background-color: #fef7e5;
+  }
+  
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .navbar-nav .nav-item {
+    margin: 0 10px;
+  }
+  
+  .nav-link {
+    color: #2f234f; /* Text color */
+    text-decoration: none;
+  }
+  
