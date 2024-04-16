@@ -29,6 +29,7 @@ import { CreateUserProfileDto } from './user-profile.dto';
 export declare class UserProfileService {
     private readonly userProfileModel;
     private readonly userModel;
+    private readonly logger;
     constructor(userProfileModel: mongoose.Model<UserProfileDocument>, userModel: mongoose.Model<UserDocument>);
     createUserProfile(createUserProfileDto: CreateUserProfileDto, loggedInUserId: string): Promise<UserProfile>;
     getUserProfileById(id: string): Promise<UserProfileDocument>;

@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { UserProfile, UserProfileDocument } from './user-profile.schema';
 import { User, UserDocument } from '../user/user.model';
@@ -9,7 +9,9 @@ import { CreateUserProfileDto } from './user-profile.dto';
 
 @Injectable()
 export class UserProfileService {
+  private readonly logger = new Logger(UserProfileService.name);
   constructor(
+    //@InjectLogger(UserProfileService.name) private readonly logger: Logger,
     @InjectModel(UserProfile.name)
     private readonly userProfileModel: mongoose.Model<UserProfileDocument>,
     @InjectModel(User.name)
@@ -47,6 +49,15 @@ export class UserProfileService {
     return user;
   }
 
+
+
+
+
+
+
+
+
+
   async updateUserProfileById(
     id: string,
     updateUserProfileDto: any,
@@ -57,7 +68,14 @@ export class UserProfileService {
       throw new NotFoundException('User profile not found');
     }
 
-    if (userProfile.user._id.toString() !== loggedInUserId) {
+  this.logger.log(`userProfile.user._id: ${userProfile.user._id.toString()}`);
+    this.logger.log(`loggedInUserId: ${loggedInUserId}`);
+    this.logger.log(`Comparison result: ${userProfile.user._id.toString() !== loggedInUserId}`);
+    this.logger.log(`userProfile.user._id data type: ${typeof userProfile.user._id}`);
+this.logger.log(`loggedInUserId data type: ${typeof loggedInUserId}`);
+
+
+    if (userProfile.user._id.toString() !== loggedInUserId.toString()) {
       throw new UnauthorizedException('Unauthorized access');
     }
 
@@ -70,6 +88,16 @@ export class UserProfileService {
     return await this.userProfileModel.findByIdAndUpdate(id, update, { new: true });
   }
 
+
+
+
+
+
+
+
+
+
+
   async deleteUserProfileById(id: string, loggedInUserId: string): Promise<any> {
     // ... other checks
   
@@ -81,3 +109,32 @@ export class UserProfileService {
   }
   
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

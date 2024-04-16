@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var UserProfileService_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserProfileService = void 0;
 const common_1 = require("@nestjs/common");
@@ -19,10 +20,11 @@ const user_profile_schema_1 = require("./user-profile.schema");
 const user_model_1 = require("../user/user.model");
 const common_2 = require("@nestjs/common");
 const mongoose_2 = require("mongoose");
-let UserProfileService = class UserProfileService {
+let UserProfileService = UserProfileService_1 = class UserProfileService {
     constructor(userProfileModel, userModel) {
         this.userProfileModel = userProfileModel;
         this.userModel = userModel;
+        this.logger = new common_1.Logger(UserProfileService_1.name);
     }
     async createUserProfile(createUserProfileDto, loggedInUserId) {
         const user = await this.userModel.findById(loggedInUserId);
@@ -48,7 +50,12 @@ let UserProfileService = class UserProfileService {
         if (!userProfile) {
             throw new common_2.NotFoundException('User profile not found');
         }
-        if (userProfile.user._id.toString() !== loggedInUserId) {
+        this.logger.log(`userProfile.user._id: ${userProfile.user._id.toString()}`);
+        this.logger.log(`loggedInUserId: ${loggedInUserId}`);
+        this.logger.log(`Comparison result: ${userProfile.user._id.toString() !== loggedInUserId}`);
+        this.logger.log(`userProfile.user._id data type: ${typeof userProfile.user._id}`);
+        this.logger.log(`loggedInUserId data type: ${typeof loggedInUserId}`);
+        if (userProfile.user._id.toString() !== loggedInUserId.toString()) {
             throw new common_1.UnauthorizedException('Unauthorized access');
         }
         const allowedUpdates = ['photo', 'phone', 'city', 'state', 'zipcode', 'daysOfWeekAvailable', 'skills', 'past', 'motivation', 'certificates'];
@@ -66,7 +73,7 @@ let UserProfileService = class UserProfileService {
     }
 };
 exports.UserProfileService = UserProfileService;
-exports.UserProfileService = UserProfileService = __decorate([
+exports.UserProfileService = UserProfileService = UserProfileService_1 = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, mongoose_1.InjectModel)(user_profile_schema_1.UserProfile.name)),
     __param(1, (0, mongoose_1.InjectModel)(user_model_1.User.name)),
