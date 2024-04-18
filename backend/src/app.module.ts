@@ -15,6 +15,7 @@ import { AuthModule } from './auth/auth.module';
 import { NpoProfileModule } from './npo-profile/npo-profile.module';
 
 
+
 /*
 
     By importing UserModule and adding it to the imports array, you're essentially registering the User Management Module with your main application module. This makes the functionalities and services defined in the User Management Module accessible throughout your application.
@@ -30,7 +31,7 @@ import { NpoProfileModule } from './npo-profile/npo-profile.module';
             NpoModule,
             UserProfileModule,
             AuthModule,
-            NpoProfileModule  
+            NpoProfileModule 
   ],
   controllers: [AppController],
   providers: [AppService,UserModule,NpoModule,UserProfileModule,AuthModuleUser,AuthModule],
