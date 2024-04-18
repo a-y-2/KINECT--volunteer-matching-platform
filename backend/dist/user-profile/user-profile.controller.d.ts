@@ -7,7 +7,6 @@ export declare class UserProfileController {
     constructor(userProfileService: UserProfileService);
     createUserProfile(req: any, createUserProfileDto: CreateUserProfileDto): Promise<UserProfile>;
     getUserProfileById(id: string, req: any): Promise<UserProfile>;
-    private logRequestDetails;
     updateUserProfileById(req: any, id: string, updateUserProfileDto: any): Promise<UserProfile>;
     deleteUserProfileById(req: any, id: string): Promise<any>;
 }

@@ -47,7 +47,6 @@ let UserProfileController = UserProfileController_1 = class UserProfileControlle
     }
     async getUserProfileById(id, req) {
         try {
-            this.logRequestDetails(req, id);
             const userProfile = await this.userProfileService.getUserProfileById(id);
             if (!userProfile) {
                 this.logger.warn(`User profile with ID ${id} not found`);
@@ -59,19 +58,6 @@ let UserProfileController = UserProfileController_1 = class UserProfileControlle
         catch (error) {
             this.logger.error(`Error retrieving user profile: ${error.message}`);
             throw error;
-        }
-    }
-    logRequestDetails(req, id) {
-        this.logger.log(`Received request to retrieve user profile with ID: ${id}`);
-        this.logger.log(`Request Method: ${req.method}`);
-        this.logger.log(`Request URL: ${req.url}`);
-        this.logger.log('Request Headers:');
-        for (const key of Object.keys(req.headers)) {
-            this.logger.log(`${key}: ${req.headers[key]}`);
-        }
-        if (req.user) {
-            this.logger.log('Authenticated User:');
-            this.logger.log(JSON.stringify(req.user));
         }
     }
     async updateUserProfileById(req, id, updateUserProfileDto) {

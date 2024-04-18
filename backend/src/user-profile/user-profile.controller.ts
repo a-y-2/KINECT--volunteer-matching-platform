@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards, Req, Logger, NotFoundException } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards, Req, Logger, NotFoundException,Injectable,LogLevel, Inject } from '@nestjs/common';
 import { UserProfileService } from './user-profile.service';
 import { UserProfile } from './user-profile.schema';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserProfileDto } from './user-profile.dto';
 @Controller('user-profile')
 export class UserProfileController {
+
+  
 
 /*
 Defines a constructor for UserProfileController that injects an instance of UserProfileService. 
@@ -13,6 +15,7 @@ This enables the controller to access methods from UserProfileService to handle 
 
 private readonly logger = new Logger(UserProfileController.name);
   constructor(private readonly userProfileService: UserProfileService) {}
+
   
 // @UseGuards(JwtAuthGuard)
 // @Post()
@@ -111,7 +114,7 @@ private readonly logger = new Logger(UserProfileController.name);
   async getUserProfileById(@Param('id') id: string, @Req() req): Promise<UserProfile> {
     
     try {
-      this.logRequestDetails(req, id);
+     // this.logRequestDetails(req, id);
 
       // Retrieve user profile by ID using the UserProfileService
       const userProfile = await this.userProfileService.getUserProfileById(id);
@@ -126,33 +129,27 @@ private readonly logger = new Logger(UserProfileController.name);
       return userProfile;
     } catch (error) {
       this.logger.error(`Error retrieving user profile: ${error.message}`);
-      throw error; // Rethrow the error to be handled by global error handler
+      throw error; 
     }
   }
 
-  private logRequestDetails(req, id: string): void {
-    this.logger.log(`Received request to retrieve user profile with ID: ${id}`);
-    this.logger.log(`Request Method: ${req.method}`);
-    this.logger.log(`Request URL: ${req.url}`);
+  // private logRequestDetails(req, id: string): void {
+  //   this.logger.log(`Received request to retrieve user profile with ID: ${id}`);
+  //   this.logger.log(`Request Method: ${req.method}`);
+  //   this.logger.log(`Request URL: ${req.url}`);
 
-    // Logging request headers
-    this.logger.log('Request Headers:');
-    for (const key of Object.keys(req.headers)) {
-      this.logger.log(`${key}: ${req.headers[key]}`);
-    }
+  //   // Logging request headers
+  //   this.logger.log('Request Headers:');
+  //   for (const key of Object.keys(req.headers)) {
+  //     this.logger.log(`${key}: ${req.headers[key]}`);
+  //   }
 
-    // Logging authenticated user (if available)
-    if (req.user) {
-      this.logger.log('Authenticated User:');
-      this.logger.log(JSON.stringify(req.user));
-    }
-  }
-
-
-
-
-
-
+  //   // Logging authenticated user (if available)
+  //   if (req.user) {
+  //     this.logger.log('Authenticated User:');
+  //     this.logger.log(JSON.stringify(req.user));
+  //   }
+  // }
 
   @UseGuards(JwtAuthGuard)
   @Put(':id')

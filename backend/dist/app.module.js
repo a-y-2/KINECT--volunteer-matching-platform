@@ -17,6 +17,7 @@ const auth_module_2 = require("./npo/auth.module");
 const npo_module_1 = require("./npo/npo.module");
 const user_profile_module_1 = require("./user-profile/user-profile.module");
 const auth_module_3 = require("./auth/auth.module");
+const npo_profile_module_1 = require("./npo-profile/npo-profile.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -29,7 +30,8 @@ exports.AppModule = AppModule = __decorate([
             auth_module_2.AuthModuleNpo,
             npo_module_1.NpoModule,
             user_profile_module_1.UserProfileModule,
-            auth_module_3.AuthModule
+            auth_module_3.AuthModule,
+            npo_profile_module_1.NpoProfileModule
         ],
         controllers: [app_controller_1.AppController],
         providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule, user_profile_module_1.UserProfileModule, auth_module_1.AuthModuleUser, auth_module_3.AuthModule],
