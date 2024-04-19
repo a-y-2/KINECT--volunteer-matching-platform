@@ -21,10 +21,10 @@
 /// <reference types="mongoose/types/utility" />
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
-/// <reference types="mongoose" />
 /// <reference types="mongoose/types/inferschematype" />
+import { Document } from 'mongoose';
 export type NpoDocument = Npo & Document;
-export declare class Npo {
+export declare class Npo extends Document {
     name: string;
     password: string;
     description?: string;
@@ -34,8 +34,8 @@ export declare class Npo {
     causes?: string[];
     contactEmail?: string;
 }
-export declare const NpoSchema: import("mongoose").Schema<Npo, import("mongoose").Model<Npo, any, any, any, import("mongoose").Document<unknown, any, Npo> & Npo & {
+export declare const NpoSchema: import("mongoose").Schema<Npo, import("mongoose").Model<Npo, any, any, any, Document<unknown, any, Npo> & Npo & {
     _id: import("mongoose").Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Npo, import("mongoose").Document<unknown, {}, import("mongoose").FlatRecord<Npo>> & import("mongoose").FlatRecord<Npo> & {
+}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Npo, Document<unknown, {}, import("mongoose").FlatRecord<Npo>> & import("mongoose").FlatRecord<Npo> & {
     _id: import("mongoose").Types.ObjectId;
 }>;

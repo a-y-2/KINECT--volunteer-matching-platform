@@ -11,7 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NpoSchema = exports.Npo = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
-let Npo = class Npo {
+const mongoose_2 = require("mongoose");
+let Npo = class Npo extends mongoose_2.Document {
 };
 exports.Npo = Npo;
 __decorate([

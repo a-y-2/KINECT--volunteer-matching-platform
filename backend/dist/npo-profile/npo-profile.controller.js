@@ -11,69 +11,103 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+var NpoProfileController_1;
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NpoProfileController = void 0;
 const common_1 = require("@nestjs/common");
 const npo_profile_service_1 = require("./npo-profile.service");
+const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
 const create_npo_profile_dto_1 = require("./dto/create-npo-profile.dto");
-const update_npo_profile_dto_1 = require("./dto/update-npo-profile.dto");
-let NpoProfileController = class NpoProfileController {
+let NpoProfileController = NpoProfileController_1 = class NpoProfileController {
     constructor(npoProfileService) {
         this.npoProfileService = npoProfileService;
+        this.logger = new common_1.Logger(NpoProfileController_1.name);
     }
-    create(createNpoProfileDto) {
-        return this.npoProfileService.create(createNpoProfileDto);
+    async createNpoProfile(req, createNpoProfileDto) {
+        try {
+            this.logger.log(`Received request to create npo profile: ${JSON.stringify(createNpoProfileDto)}`);
+            if (!req.npo) {
+                this.logger.warn('Npo not authenticated');
+                throw new common_1.NotFoundException('Npo not authenticated');
+            }
+            const loggedInNpoId = req.npo._id;
+            this.logger.log(`Extracted npoId: ${loggedInNpoId}`);
+            if (!loggedInNpoId) {
+                this.logger.warn('npoId not provided');
+                throw new common_1.NotFoundException('npoId not provided');
+            }
+            const npoProfile = await this.npoProfileService.createNpoProfile(createNpoProfileDto, loggedInNpoId);
+            this.logger.log(`Npo profile created successfully`);
+            return npoProfile;
+        }
+        catch (error) {
+            this.logger.error(`Error creating npo profile: ${error.message}`);
+            throw error;
+        }
     }
-    findAll() {
-        return this.npoProfileService.findAll();
+    async getNpoProfileById(id, req) {
+        try {
+            const npoProfile = await this.npoProfileService.getNpoProfileById(id);
+            if (!npoProfile) {
+                this.logger.warn(`Npo profile with ID ${id} not found`);
+                throw new common_1.NotFoundException(`Npo profile with ID ${id} not found`);
+            }
+            this.logger.log(`Npo profile retrieved successfully: ${JSON.stringify(npoProfile)}`);
+            return npoProfile;
+        }
+        catch (error) {
+            this.logger.error(`Error retrieving npo profile: ${error.message}`);
+            throw error;
+        }
     }
-    findOne(id) {
-        return this.npoProfileService.findOne(+id);
+    async updateNpoProfileById(req, id, updateNpoProfileDto) {
+        const loggedInNpoId = req.npo._id;
+        return this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto, loggedInNpoId);
     }
-    update(id, updateNpoProfileDto) {
-        return this.npoProfileService.update(+id, updateNpoProfileDto);
-    }
-    remove(id) {
-        return this.npoProfileService.remove(+id);
+    async deleteNpoProfileById(req, id) {
+        const loggedInNpoId = req.npo.npoId;
+        return this.npoProfileService.deleteNpoProfileById(id, loggedInNpoId);
     }
 };
 exports.NpoProfileController = NpoProfileController;
 __decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
-    __param(0, (0, common_1.Body)()),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [create_npo_profile_dto_1.CreateNpoProfileDto]),
-    __metadata("design:returntype", void 0)
-], NpoProfileController.prototype, "create", null);
-__decorate([
-    (0, common_1.Get)(),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", []),
-    __metadata("design:returntype", void 0)
-], NpoProfileController.prototype, "findAll", null);
-__decorate([
-    (0, common_1.Get)(':id'),
-    __param(0, (0, common_1.Param)('id')),
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], NpoProfileController.prototype, "findOne", null);
-__decorate([
-    (0, common_1.Patch)(':id'),
-    __param(0, (0, common_1.Param)('id')),
+    __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Body)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String, update_npo_profile_dto_1.UpdateNpoProfileDto]),
-    __metadata("design:returntype", void 0)
-], NpoProfileController.prototype, "update", null);
+    __metadata("design:paramtypes", [Object, create_npo_profile_dto_1.CreateNpoProfileDto]),
+    __metadata("design:returntype", Promise)
+], NpoProfileController.prototype, "createNpoProfile", null);
 __decorate([
-    (0, common_1.Delete)(':id'),
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
+    __param(1, (0, common_1.Req)()),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
-    __metadata("design:returntype", void 0)
-], NpoProfileController.prototype, "remove", null);
-exports.NpoProfileController = NpoProfileController = __decorate([
+    __metadata("design:paramtypes", [String, Object]),
+    __metadata("design:returntype", Promise)
+], NpoProfileController.prototype, "getNpoProfileById", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Put)(':id'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('id')),
+    __param(2, (0, common_1.Body)()),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String, Object]),
+    __metadata("design:returntype", Promise)
+], NpoProfileController.prototype, "updateNpoProfileById", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Delete)(':id'),
+    __param(0, (0, common_1.Req)()),
+    __param(1, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object, String]),
+    __metadata("design:returntype", Promise)
+], NpoProfileController.prototype, "deleteNpoProfileById", null);
+exports.NpoProfileController = NpoProfileController = NpoProfileController_1 = __decorate([
     (0, common_1.Controller)('npo-profile'),
     __metadata("design:paramtypes", [npo_profile_service_1.NpoProfileService])
 ], NpoProfileController);

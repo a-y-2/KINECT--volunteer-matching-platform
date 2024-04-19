@@ -3,6 +3,9 @@ import { UserProfileService } from './user-profile.service';
 import { UserProfile } from './user-profile.schema';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { CreateUserProfileDto } from './user-profile.dto';
+
+
+
 @Controller('user-profile')
 export class UserProfileController {
 
@@ -120,7 +123,7 @@ private readonly logger = new Logger(UserProfileController.name);
       const userProfile = await this.userProfileService.getUserProfileById(id);
 
       if (!userProfile) {
-        this.logger.warn(`User profile with ID ${id} not found`);
+        this.logger.warn(`User profile with ID ${id} not found`); 
         throw new NotFoundException(`User profile with ID ${id} not found`);
       }
 

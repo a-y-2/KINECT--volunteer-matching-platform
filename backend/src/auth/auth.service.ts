@@ -3,11 +3,14 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { UserService } from '../user/user.service'; // Import the user service
 import { User } from '../user/user.model'; // Assuming User model is defined
+import { NpoService } from '../npo/npo.service'; // Import the user service
+import { Npo } from '../npo/npo.model'; 
 
 @Injectable()
 export class AuthService {
   constructor(
     private readonly userService: UserService,
+    private readonly npoService: NpoService,
     private readonly jwtService: JwtService,
   ) {}
 
@@ -22,6 +25,17 @@ export class AuthService {
     return null; // Invalid credentials
   }
 
+  // async validateNpo(name: string, password: string): Promise<Npo | null> {
+  //   const npo = await this.npoService.findByName(name);
+
+  //   if (npo && await npo.comparePassword(password)) {
+  //     // User found and password matches, return user
+  //     return npo;
+  //   }
+
+  //   return null; // Invalid credentials
+  // }
+
   async login(email: string, password: string): Promise<string> {
     const user = await this.validateUser(email, password);
 
@@ -35,6 +49,20 @@ export class AuthService {
 
     return token;
   }
+
+  // async login(name: string, password: string): Promise<string> {
+  //   const npo = await this.validateNpo(name, password);
+
+  //   if (!npo) {
+  //     throw new UnauthorizedException('Invalid credentials');
+  //   }
+
+  //   // Generate JWT token with user ID as payload
+  //   const payload = { npoId: npo.id };
+  //   const token = this.jwtService.sign(payload);
+
+  //   return token;
+  // }
 
   async verifyToken(token: string): Promise<User | null> {
     try {

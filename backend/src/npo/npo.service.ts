@@ -20,6 +20,10 @@ export class NpoService { // Renamed from UserService to NpoService
     return npo;
   }
 
+  async findByName(name: string): Promise<Npo | null> {
+    return this.npoModel.findOne({ name }).exec();
+  }
+
   async create(npo: Partial<NpoDocument>): Promise<NpoDocument> {
     const createdNpo = await this.npoModel.create(npo);
     return createdNpo;

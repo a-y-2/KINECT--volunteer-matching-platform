@@ -8,15 +8,32 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.NpoProfileModule = void 0;
 const common_1 = require("@nestjs/common");
-const npo_profile_service_1 = require("./npo-profile.service");
+const jwt_1 = require("@nestjs/jwt");
 const npo_profile_controller_1 = require("./npo-profile.controller");
+const npo_profile_service_1 = require("./npo-profile.service");
+const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const npo_module_1 = require("../npo/npo.module");
+const auth_module_1 = require("../auth/auth.module");
+const npo_model_1 = require("../npo/npo.model");
+const mongoose_1 = require("@nestjs/mongoose");
+const npo_profile_schema_1 = require("./entities/npo-profile.schema");
 let NpoProfileModule = class NpoProfileModule {
 };
 exports.NpoProfileModule = NpoProfileModule;
 exports.NpoProfileModule = NpoProfileModule = __decorate([
     (0, common_1.Module)({
+        imports: [
+            mongoose_1.MongooseModule.forFeature([{ name: npo_profile_schema_1.NpoProfile.name, schema: npo_profile_schema_1.NpoProfileSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: npo_model_1.Npo.name, schema: npo_model_1.NpoSchema }]),
+            jwt_1.JwtModule.register({
+                secret: 'abcd',
+                signOptions: { expiresIn: '24h' },
+            }),
+            auth_module_1.AuthModule,
+            npo_module_1.NpoModule,
+        ],
         controllers: [npo_profile_controller_1.NpoProfileController],
-        providers: [npo_profile_service_1.NpoProfileService],
+        providers: [npo_profile_service_1.NpoProfileService, jwt_auth_guard_1.JwtAuthGuard],
     })
 ], NpoProfileModule);
 //# sourceMappingURL=npo-profile.module.js.map
