@@ -1,39 +1,14 @@
+// Navbar.js
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import './Navbar.css';
+import { useLocation } from 'react-router-dom';
+import LandingNavbar from './LandingNavbar';
+import DashboardNavbar from './DashboardNavbar';
 
 const Navbar = () => {
-  return (
-    <nav className="navbar navbar-expand-lg navbar-light">
-      <div className="container">
-        <div className="navbar-brand">Logo</div>
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/volunteer">
-                Volunteer
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/organization">
-                Organization
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/about">
-                About Us
-              </NavLink>
-            </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/contact">
-                Contact
-              </NavLink>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
+  const location = useLocation();
+  const isDashboardRoute = location.pathname.includes('/volunteer-dashboard');
+
+  return isDashboardRoute ? <DashboardNavbar /> : <LandingNavbar />;
 };
 
 export default Navbar;

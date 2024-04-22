@@ -1,10 +1,10 @@
-// App.js
-
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Volunteer from './pages/Volunteer/Volunteer';
+import Volunteer from './pages/landing/Volunteer/Volunteer';
+import VolDashboard from './pages/dashboard/VolDashboard';
 
-import Navbar from './components/navbar/Navbar';
+import LandingNavbar from './components/navbar/LandingNavbar'; // Import LandingNavbar
+import VolNavbar from './pages/dashboard/VolNavbar'; // Import DashboardNavbar
 import Footer from './components/footer/Footer';
 
 const Organization = () => <h2>Organization Page</h2>;
@@ -15,20 +15,44 @@ const App = () => {
   return (
     <Router>
       <div className="App">
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Volunteer />} />
-          <Route path="/volunteer" element={<Volunteer />} />
+          <Route
+            path="/"
+            element={
+              <>
+                <LandingNavbar />
+                <Volunteer />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/volunteer"
+            element={
+              <>
+                <LandingNavbar />
+                <Volunteer />
+                <Footer />
+              </>
+            }
+          />
+          <Route
+            path="/volunteer-dashboard"
+            element={
+              <>
+                <VolNavbar />
+                <VolDashboard />
+                {/* You can choose to include or exclude Footer component for dashboard */}
+              </>
+            }
+          />
           <Route path="/organization" element={<Organization />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
         </Routes>
-        <Footer />
       </div>
     </Router>
   );
 };
-
-const Home = () => <h2>Home Page</h2>;
 
 export default App;
