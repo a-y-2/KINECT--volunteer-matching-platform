@@ -24,3 +24,4 @@ import { UserProfileSchema,UserProfile } from './user-profile.schema';
   providers: [UserProfileService, JwtAuthGuard], // Ensure JwtAuthGuard is provided
 })
 export class UserProfileModule {}
+ 

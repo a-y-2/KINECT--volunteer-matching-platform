@@ -18,6 +18,7 @@ const npo_module_1 = require("./npo/npo.module");
 const user_profile_module_1 = require("./user-profile/user-profile.module");
 const auth_module_3 = require("./auth/auth.module");
 const npo_profile_module_1 = require("./npo-profile/npo-profile.module");
+const npo_auth_module_1 = require("./auth/npo-auth.module");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -31,10 +32,15 @@ exports.AppModule = AppModule = __decorate([
             npo_module_1.NpoModule,
             user_profile_module_1.UserProfileModule,
             auth_module_3.AuthModule,
-            npo_profile_module_1.NpoProfileModule
+            npo_profile_module_1.NpoProfileModule,
+            npo_auth_module_1.NpoAuthModule,
         ],
         controllers: [app_controller_1.AppController],
-        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule, user_profile_module_1.UserProfileModule, auth_module_1.AuthModuleUser, auth_module_3.AuthModule],
+        providers: [app_service_1.AppService, user_module_1.UserModule, npo_module_1.NpoModule,
+            user_profile_module_1.UserProfileModule,
+            auth_module_1.AuthModuleUser,
+            auth_module_3.AuthModule,
+            npo_auth_module_1.NpoAuthModule, npo_profile_module_1.NpoProfileModule, auth_module_2.AuthModuleNpo],
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

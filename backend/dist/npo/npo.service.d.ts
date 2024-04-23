@@ -7,4 +7,5 @@ export declare class NpoService {
     findByName(name: string): Promise<Npo | null>;
     create(npo: Partial<NpoDocument>): Promise<NpoDocument>;
     private hashPassword;
+    findById(id: string): Promise<Npo | null>;
 }

@@ -40,6 +40,9 @@ let NpoService = class NpoService {
         const salt = await bcrypt.genSalt(10);
         return bcrypt.hash(password, salt);
     }
+    async findById(id) {
+        return this.npoModel.findById(id).exec();
+    }
 };
 exports.NpoService = NpoService;
 exports.NpoService = NpoService = __decorate([

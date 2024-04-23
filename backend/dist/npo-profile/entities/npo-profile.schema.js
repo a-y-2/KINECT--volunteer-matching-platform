@@ -64,10 +64,6 @@ __decorate([
     (0, mongoose_1.Prop)(),
     __metadata("design:type", String)
 ], NpoProfile.prototype, "images", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ type: [{ type: mongoose_2.Types.ObjectId, ref: 'Opportunity' }] }),
-    __metadata("design:type", Array)
-], NpoProfile.prototype, "opportunities", void 0);
 exports.NpoProfile = NpoProfile = __decorate([
     (0, mongoose_1.Schema)()
 ], NpoProfile);

@@ -13,6 +13,7 @@ import { User, UserSchema } from './user/user.model';
 import { UserProfileModule } from './user-profile/user-profile.module';
 import { AuthModule } from './auth/auth.module';
 import { NpoProfileModule } from './npo-profile/npo-profile.module';
+import { NpoAuthModule } from './auth/npo-auth.module';
 
 
 
@@ -31,10 +32,15 @@ import { NpoProfileModule } from './npo-profile/npo-profile.module';
             NpoModule,
             UserProfileModule,
             AuthModule,
-            NpoProfileModule 
+            NpoProfileModule,
+            NpoAuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService,UserModule,NpoModule,UserProfileModule,AuthModuleUser,AuthModule],
+  providers: [AppService,UserModule,NpoModule,
+    UserProfileModule,
+    AuthModuleUser,
+    AuthModule,
+    NpoAuthModule,NpoProfileModule,AuthModuleNpo],
   //exports: [UserService],
 })
 export class AppModule {}

@@ -1,16 +1,16 @@
 export class CreateNpoProfileDto {
-    readonly npo: string; // ID of the associated NPO
-    readonly name: string;
-    readonly description: string;
-    readonly location: string;
-    readonly website: string;
-    readonly contactEmail: string;
-    readonly logo?: string;
-    readonly missionStatement?: string;
-    readonly areasOfFocus?: string;
-    readonly foundingYear?: number;
-    readonly socialMediaLinks?: string;
-    readonly images?: string;
-    readonly opportunities: string[]; // Array of Opportunity IDs
+    npoId: string; // ID of the associated NPO
+    name: string;
+    description: string;
+    location: string;
+    website: string;
+    contactEmail: string;
+    logo?: string;
+    missionStatement?: string;
+    areasOfFocus?: string;
+    foundingYear?: number;
+    socialMediaLinks?: string;
+    images?: string;
+    // opportunities: string[]; // Array of Opportunity IDs
   }
   

@@ -30,6 +30,11 @@ export class Npo extends Document{
   @Prop()
   contactEmail?: string;
 
+  async comparePassword(candidatePassword: string): Promise<boolean> {
+    // Use bcrypt to compare the candidate password with the stored hashed password
+    return bcrypt.compare(candidatePassword, this.password);
+  }
+
   // @Prop()
   // socialMedia?: { [key: string]: string }; // Object for social media links (platform: URL)
   // async comparePassword(candidatePassword: string): Promise<boolean> {

@@ -6,34 +6,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NpoProfileModule = void 0;
+exports.NpoAuthModule = void 0;
 const common_1 = require("@nestjs/common");
+const passport_1 = require("@nestjs/passport");
 const jwt_1 = require("@nestjs/jwt");
-const npo_profile_controller_1 = require("./npo-profile.controller");
-const npo_profile_service_1 = require("./npo-profile.service");
-const npo_auth_guard_1 = require("../auth/npo-auth.guard");
-const npo_module_1 = require("../npo/npo.module");
-const npo_auth_module_1 = require("../auth/npo-auth.module");
+const npo_service_1 = require("./npo-service");
+const npo_strategy_1 = require("./npo.strategy");
+const user_model_1 = require("../user/user.model");
 const npo_model_1 = require("../npo/npo.model");
 const mongoose_1 = require("@nestjs/mongoose");
-const npo_profile_schema_1 = require("./entities/npo-profile.schema");
-let NpoProfileModule = class NpoProfileModule {
+const user_service_1 = require("../user/user.service");
+const npo_service_2 = require("../npo/npo.service");
+const npo_module_1 = require("../npo/npo.module");
+let NpoAuthModule = class NpoAuthModule {
 };
-exports.NpoProfileModule = NpoProfileModule;
-exports.NpoProfileModule = NpoProfileModule = __decorate([
+exports.NpoAuthModule = NpoAuthModule;
+exports.NpoAuthModule = NpoAuthModule = __decorate([
     (0, common_1.Module)({
         imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: npo_profile_schema_1.NpoProfile.name, schema: npo_profile_schema_1.NpoProfileSchema }]),
+            npo_module_1.NpoModule,
+            mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name, schema: user_model_1.UserSchema }]),
             mongoose_1.MongooseModule.forFeature([{ name: npo_model_1.Npo.name, schema: npo_model_1.NpoSchema }]),
+            passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
             jwt_1.JwtModule.register({
                 secret: 'abcd',
-                signOptions: { expiresIn: '24h' },
+                signOptions: { expiresIn: '1h' },
             }),
-            npo_auth_module_1.NpoAuthModule,
-            npo_module_1.NpoModule,
         ],
-        controllers: [npo_profile_controller_1.NpoProfileController],
-        providers: [npo_profile_service_1.NpoProfileService, npo_auth_guard_1.NpoAuthGuard],
+        providers: [npo_service_1.NpoAuthService, npo_strategy_1.NpoJwtStrategy, npo_service_2.NpoService, user_service_1.UserService],
+        exports: [npo_service_1.NpoAuthService, passport_1.PassportModule, jwt_1.JwtModule],
     })
-], NpoProfileModule);
-//# sourceMappingURL=npo-profile.module.js.map
+], NpoAuthModule);
+//# sourceMappingURL=npo-auth.module.js.map

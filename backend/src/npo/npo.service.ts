@@ -33,4 +33,8 @@ export class NpoService { // Renamed from UserService to NpoService
     const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(password, salt);
   }
+
+  async findById(id: string): Promise<Npo | null> {
+    return this.npoModel.findById(id).exec();
+  }
 }

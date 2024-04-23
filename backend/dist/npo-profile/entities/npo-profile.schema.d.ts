@@ -24,7 +24,6 @@
 /// <reference types="mongoose/types/inferschematype" />
 import { Document, Types } from 'mongoose';
 import { Npo } from '../../npo/npo.model';
-import { Opportunity } from './opportunity.schema';
 export declare class NpoProfile extends Document {
     npo: Npo;
     name: string;
@@ -38,7 +37,6 @@ export declare class NpoProfile extends Document {
     foundingYear?: number;
     socialMediaLinks?: string;
     images?: string;
-    opportunities: Opportunity[];
 }
 export declare const NpoProfileSchema: import("mongoose").Schema<NpoProfile, import("mongoose").Model<NpoProfile, any, any, any, Document<unknown, any, NpoProfile> & NpoProfile & {
     _id: Types.ObjectId;

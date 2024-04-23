@@ -21,6 +21,7 @@ export class NpoProfileService {
   async createNpoProfile(
     createNpoProfileDto: CreateNpoProfileDto, 
     loggedInNpoId: string,
+    // loggedInNpoId: mongoose.Types.ObjectId,
   ): Promise<NpoProfile> {
     const npo = await this.npoModel.findById(loggedInNpoId);
     if (!npo) {

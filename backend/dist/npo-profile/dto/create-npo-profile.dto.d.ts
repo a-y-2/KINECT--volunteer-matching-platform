@@ -1,15 +1,14 @@
 export declare class CreateNpoProfileDto {
-    readonly npo: string;
-    readonly name: string;
-    readonly description: string;
-    readonly location: string;
-    readonly website: string;
-    readonly contactEmail: string;
-    readonly logo?: string;
-    readonly missionStatement?: string;
-    readonly areasOfFocus?: string;
-    readonly foundingYear?: number;
-    readonly socialMediaLinks?: string;
-    readonly images?: string;
-    readonly opportunities: string[];
+    npoId: string;
+    name: string;
+    description: string;
+    location: string;
+    website: string;
+    contactEmail: string;
+    logo?: string;
+    missionStatement?: string;
+    areasOfFocus?: string;
+    foundingYear?: number;
+    socialMediaLinks?: string;
+    images?: string;
 }

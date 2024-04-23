@@ -33,6 +33,7 @@ export declare class Npo extends Document {
     mission?: string;
     causes?: string[];
     contactEmail?: string;
+    comparePassword(candidatePassword: string): Promise<boolean>;
 }
 export declare const NpoSchema: import("mongoose").Schema<Npo, import("mongoose").Model<Npo, any, any, any, Document<unknown, any, Npo> & Npo & {
     _id: import("mongoose").Types.ObjectId;

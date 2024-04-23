@@ -41,8 +41,8 @@ export class NpoProfile extends Document {
   @Prop()
   images?: string; // Optional comma-separated string of image URLs
 
-  @Prop({ type: [{ type: Types.ObjectId, ref: 'Opportunity' }] })
-  opportunities: Opportunity[]; // Define opportunities as an array of Opportunity references
+  // @Prop({ type: [{ type: Types.ObjectId, ref: 'Opportunity' }] })
+  // opportunities: Opportunity[]; // Define opportunities as an array of Opportunity references
 }
 
 export const NpoProfileSchema = SchemaFactory.createForClass(NpoProfile);

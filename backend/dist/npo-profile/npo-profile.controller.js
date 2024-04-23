@@ -16,28 +16,25 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.NpoProfileController = void 0;
 const common_1 = require("@nestjs/common");
 const npo_profile_service_1 = require("./npo-profile.service");
-const jwt_auth_guard_1 = require("../auth/jwt-auth.guard");
+const npo_profile_schema_1 = require("./entities/npo-profile.schema");
+const npo_auth_guard_1 = require("../auth/npo-auth.guard");
 const create_npo_profile_dto_1 = require("./dto/create-npo-profile.dto");
+const mongoose_1 = require("mongoose");
+const mongoose_2 = require("@nestjs/mongoose");
 let NpoProfileController = NpoProfileController_1 = class NpoProfileController {
-    constructor(npoProfileService) {
+    constructor(npoProfileService, npoProfileModel) {
         this.npoProfileService = npoProfileService;
+        this.npoProfileModel = npoProfileModel;
         this.logger = new common_1.Logger(NpoProfileController_1.name);
     }
-    async createNpoProfile(req, createNpoProfileDto) {
+    async createNpoProfile(req, createNpoProfileDto, loggedInNpoId) {
         try {
-            this.logger.log(`Received request to create npo profile: ${JSON.stringify(createNpoProfileDto)}`);
-            if (!req.npo) {
-                this.logger.warn('Npo not authenticated');
-                throw new common_1.NotFoundException('Npo not authenticated');
-            }
-            const loggedInNpoId = req.npo._id;
-            this.logger.log(`Extracted npoId: ${loggedInNpoId}`);
+            this.logger.log(`Received request to create npo profile for npo: ${loggedInNpoId}`);
             if (!loggedInNpoId) {
-                this.logger.warn('npoId not provided');
-                throw new common_1.NotFoundException('npoId not provided');
+                throw new common_1.BadRequestException('loggedInNpoId is required');
             }
             const npoProfile = await this.npoProfileService.createNpoProfile(createNpoProfileDto, loggedInNpoId);
-            this.logger.log(`Npo profile created successfully`);
+            this.logger.log(`Npo profile created successfully for npo: ${loggedInNpoId}`);
             return npoProfile;
         }
         catch (error) {
@@ -71,16 +68,16 @@ let NpoProfileController = NpoProfileController_1 = class NpoProfileController {
 };
 exports.NpoProfileController = NpoProfileController;
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Post)(),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Body)()),
+    __param(2, (0, common_1.Body)('loggedInNpoId')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Object, create_npo_profile_dto_1.CreateNpoProfileDto]),
+    __metadata("design:paramtypes", [Object, create_npo_profile_dto_1.CreateNpoProfileDto, String]),
     __metadata("design:returntype", Promise)
 ], NpoProfileController.prototype, "createNpoProfile", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(npo_auth_guard_1.NpoAuthGuard),
     (0, common_1.Get)(':id'),
     __param(0, (0, common_1.Param)('id')),
     __param(1, (0, common_1.Req)()),
@@ -89,7 +86,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NpoProfileController.prototype, "getNpoProfileById", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(npo_auth_guard_1.NpoAuthGuard),
     (0, common_1.Put)(':id'),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Param)('id')),
@@ -99,7 +96,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], NpoProfileController.prototype, "updateNpoProfileById", null);
 __decorate([
-    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.UseGuards)(npo_auth_guard_1.NpoAuthGuard),
     (0, common_1.Delete)(':id'),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Param)('id')),
@@ -109,6 +106,8 @@ __decorate([
 ], NpoProfileController.prototype, "deleteNpoProfileById", null);
 exports.NpoProfileController = NpoProfileController = NpoProfileController_1 = __decorate([
     (0, common_1.Controller)('npo-profile'),
-    __metadata("design:paramtypes", [npo_profile_service_1.NpoProfileService])
+    __param(1, (0, mongoose_2.InjectModel)(npo_profile_schema_1.NpoProfile.name)),
+    __metadata("design:paramtypes", [npo_profile_service_1.NpoProfileService,
+        mongoose_1.Model])
 ], NpoProfileController);
 //# sourceMappingURL=npo-profile.controller.js.map

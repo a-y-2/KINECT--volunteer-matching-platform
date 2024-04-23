@@ -1,45 +1,85 @@
-import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards, Req, Logger, NotFoundException,Injectable,LogLevel, Inject } from '@nestjs/common';
+import { Controller, Get, Post, Put, Delete, Body, Param, UseGuards, Req, Logger, NotFoundException,Injectable,LogLevel, Inject, BadRequestException } from '@nestjs/common';
 import { NpoProfileService } from './npo-profile.service';
-import { NpoProfile } from './entities/npo-profile.schema';
-import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { NpoProfile,NpoProfileSchema } from './entities/npo-profile.schema';
+import { NpoAuthGuard } from '../auth/npo-auth.guard';
 import { CreateNpoProfileDto } from './dto/create-npo-profile.dto';
+import mongoose, { Model } from 'mongoose';
+import { InjectModel } from '@nestjs/mongoose';
 
 @Controller('npo-profile')
 export class NpoProfileController {
 
 private readonly logger = new Logger(NpoProfileController.name);
-  constructor(private readonly npoProfileService: NpoProfileService) {}
 
-@UseGuards(JwtAuthGuard)
+  constructor(private readonly npoProfileService: NpoProfileService,
+    @InjectModel(NpoProfile.name) private readonly npoProfileModel: Model<NpoProfile>
+  ) {}
+
+  //@UseGuards(NpoAuthGuard)
+  // @Post()
+  // async createNpoProfile(@Req() req, @Body() createNpoProfileDto: CreateNpoProfileDto): Promise<NpoProfile> {
+    
+  //   try {
+  //     // Logging the incoming request details
+  //     this.logger.log(`Received request to create npo profile: ${JSON.stringify(createNpoProfileDto)}`);
+  //     this.logger.log(req.npo, req.name, req.description, );
+
+  //     if (!req.npo.name) {
+  //       this.logger.warn('Npo not authenticated');
+  //       throw new NotFoundException('Npo not authenticated');
+  //     }
+ 
+  //     // Extracting npoId from the authenticated request
+  //     const loggedInNpoId = req.npo._id;
+  //     this.logger.log(`Extracted npoId: ${loggedInNpoId}`);
+
+  //     if (!loggedInNpoId) {
+  //       this.logger.warn('npoId not provided');
+  //       throw new NotFoundException('npoId not provided');
+  //     }
+
+  //     // Creating npo profile with the provided data and npoId
+  //     const npoProfile = await this.npoProfileService.createNpoProfile(createNpoProfileDto, loggedInNpoId);
+
+  //     // Logging successful creation of npo profile
+  //     this.logger.log(`Npo profile created successfully`);
+
+  //     return npoProfile;
+  //   } catch (error) {
+  //     // Logging error details
+  //     this.logger.error(`Error creating npo profile: ${error.message}`);
+
+  //     // Rethrowing the error to be handled by global error handler
+  //     throw error;
+  //   }
+  // }
+
   @Post()
-  async createNpoProfile(@Req() req, @Body() createNpoProfileDto: CreateNpoProfileDto): Promise<NpoProfile> {
+  async createNpoProfile(
+    @Req() req,
+    @Body() createNpoProfileDto: CreateNpoProfileDto,
+    @Body('loggedInNpoId') loggedInNpoId: string, // Extract from request body
+  ): Promise<NpoProfile> {
     try {
       // Logging the incoming request details
-      this.logger.log(`Received request to create npo profile: ${JSON.stringify(createNpoProfileDto)}`);
+      this.logger.log(`Received request to create npo profile for npo: ${loggedInNpoId}`);
 
-      // Logging the contents of the request object
-      // this.logRequestDetails(req);
-
-      // Checking if user is authenticated
-      if (!req.npo) {
-        this.logger.warn('Npo not authenticated');
-        throw new NotFoundException('Npo not authenticated');
-      }
-
-      // Extracting npoId from the authenticated request
-      const loggedInNpoId = req.npo._id;
-      this.logger.log(`Extracted npoId: ${loggedInNpoId}`);
-
+      // Validate the loggedInNpoId (optional)
       if (!loggedInNpoId) {
-        this.logger.warn('npoId not provided');
-        throw new NotFoundException('npoId not provided');
+        throw new BadRequestException('loggedInNpoId is required');
       }
 
-      // Creating npo profile with the provided data and npoId
+      // Delegate creation logic to the service (choose one option):
+
+      // Option 1: Convert string to ObjectId (if applicable)
+      // const objectId = new mongoose.Types.ObjectId(loggedInNpoId);
       const npoProfile = await this.npoProfileService.createNpoProfile(createNpoProfileDto, loggedInNpoId);
 
+      // Option 2: Modify Service Method Parameter Type (if necessary)
+      // const npoProfile = await this.npoProfileService.createNpoProfile(createNpoProfileDto, loggedInNpoId); // Change parameter type to string
+
       // Logging successful creation of npo profile
-      this.logger.log(`Npo profile created successfully`);
+      this.logger.log(`Npo profile created successfully for npo: ${loggedInNpoId}`);
 
       return npoProfile;
     } catch (error) {
@@ -50,7 +90,6 @@ private readonly logger = new Logger(NpoProfileController.name);
       throw error;
     }
   }
-
   // private logRequestDetails(req): void {
   //   // Logging request method and URL
   //   this.logger.log(`Request Method: ${req.method}`);
@@ -83,7 +122,7 @@ private readonly logger = new Logger(NpoProfileController.name);
 
 
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(NpoAuthGuard)
   @Get(':id')
   async getNpoProfileById(@Param('id') id: string, @Req() req): Promise<NpoProfile> {
     
@@ -125,14 +164,14 @@ private readonly logger = new Logger(NpoProfileController.name);
   //   }
   // }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(NpoAuthGuard)
   @Put(':id')
   async updateNpoProfileById(@Req() req, @Param('id') id: string, @Body() updateNpoProfileDto: any): Promise<NpoProfile> {
     const loggedInNpoId = req.npo._id; // Extract user ID from the authenticated request
     return this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto, loggedInNpoId);
   }
 
-  @UseGuards(JwtAuthGuard)
+  @UseGuards(NpoAuthGuard)
   @Delete(':id')
   async deleteNpoProfileById(@Req() req, @Param('id') id: string): Promise<any> {
     const loggedInNpoId = req.npo.npoId; // Extract user ID from the authenticated request
