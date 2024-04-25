@@ -14,6 +14,8 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { AuthModule } from './auth/auth.module';
 import { NpoProfileModule } from './npo-profile/npo-profile.module';
 import { NpoAuthModule } from './auth/npo-auth.module';
+// import { CorsModule } from '@nestjs/common';
+
 
 
 
@@ -24,7 +26,16 @@ import { NpoAuthModule } from './auth/npo-auth.module';
 
 */
 @Module({
-  imports: [MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
+  imports: [
+            // Import the CorsModule and configure it
+            // CorsModule.forRoot({
+            //   // Define your CORS options here
+            //   origin: '*', // Allow requests from any origin (you might want to restrict this in production)
+            //   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+            //   preflightContinue: false,
+            //   optionsSuccessStatus: 204,
+            // }),
+            MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
             UserModule,  
             AuthModuleUser, 
             AppModule,
