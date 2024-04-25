@@ -122,7 +122,7 @@ private readonly logger = new Logger(NpoProfileController.name);
 
 
 
-  @UseGuards(NpoAuthGuard)
+  //@UseGuards(NpoAuthGuard)
   @Get(':id')
   async getNpoProfileById(@Param('id') id: string, @Req() req): Promise<NpoProfile> {
     
@@ -164,17 +164,25 @@ private readonly logger = new Logger(NpoProfileController.name);
   //   }
   // }
 
-  @UseGuards(NpoAuthGuard)
   @Put(':id')
-  async updateNpoProfileById(@Req() req, @Param('id') id: string, @Body() updateNpoProfileDto: any): Promise<NpoProfile> {
-    const loggedInNpoId = req.npo._id; // Extract user ID from the authenticated request
-    return this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto, loggedInNpoId);
+  async updateNpoProfileById(
+    @Param('id') id: string,
+    @Body() updateNpoProfileDto: any,
+  ): Promise<NpoProfile | null> {
+    const npoProfile = await this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto);
+    if (!npoProfile) {
+      throw new NotFoundException('Npo profile not found');
+    }
+    return npoProfile;
   }
 
-  @UseGuards(NpoAuthGuard)
+  //@UseGuards(NpoAuthGuard)
   @Delete(':id')
-  async deleteNpoProfileById(@Req() req, @Param('id') id: string): Promise<any> {
-    const loggedInNpoId = req.npo.npoId; // Extract user ID from the authenticated request
-    return this.npoProfileService.deleteNpoProfileById(id, loggedInNpoId);
+  async deleteNpoProfileById(@Param('id') id: string): Promise<{ message: string }> {
+    const result = await this.npoProfileService.deleteNpoProfileById(id);
+    if (!result) {
+      throw new NotFoundException('Npo profile not found');
+    }
+    return { message: 'Npo profile deleted successfully' };
   }
 }

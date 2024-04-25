@@ -52,15 +52,15 @@ export class NpoProfileService {
 
 
 
-  async updateNpoProfileById(
-    id: string,
-    updateNpoProfileDto: any,
-    loggedInNpoId: string,
-  ): Promise<NpoProfile | null> {
-    const npoProfile = await this.npoProfileModel.findById(id);
-    if (!npoProfile) {
-      throw new NotFoundException('Npo profile not found');
-    }
+  // async updateNpoProfileById(
+  //   id: string,
+  //   updateNpoProfileDto: any,
+  //   loggedInNpoId: string,
+  // ): Promise<NpoProfile | null> {
+  //   const npoProfile = await this.npoProfileModel.findById(id);
+  //   if (!npoProfile) {
+  //     throw new NotFoundException('Npo profile not found');
+  //   }
 
 //   this.logger.log(`npoProfile.npo._id: ${npoProfile.npo._id.toString()}`);
 //     this.logger.log(`loggedInNpoId: ${loggedInUserId}`);
@@ -69,28 +69,57 @@ export class NpoProfileService {
 // this.logger.log(`loggedInUserId data type: ${typeof loggedInUserId}`);
 
 
-    if (npoProfile.npo._id.toString() !== loggedInNpoId.toString()) {
-      throw new UnauthorizedException('Unauthorized access');
+  //   if (npoProfile.npo._id.toString() !== loggedInNpoId.toString()) {
+  //     throw new UnauthorizedException('Unauthorized access');
+  //   }
+
+  //   // Update only allowed fields (optional)
+  //   const allowedUpdates = ['name','description','location','website','contactEmail','logo','missionStatement','areasOfFocus','foundingYear','socialMediaLinks','images','opportunities'];
+  //   const update = Object.keys(updateNpoProfileDto)
+  //     .filter((key) => allowedUpdates.includes(key))
+  //     .reduce((acc, key) => ({ ...acc, [key]: updateNpoProfileDto[key] }), {});
+
+  //   return await this.npoProfileModel.findByIdAndUpdate(id, update, { new: true });
+
+  // }
+
+  async updateNpoProfileById(id: string, updateNpoProfileDto: any): Promise<NpoProfile | null> {
+    const npoProfile = await this.npoProfileModel.findById(id);
+    if (!npoProfile) {
+      throw new NotFoundException('Npo profile not found');
     }
 
-    // Update only allowed fields (optional)
-    const allowedUpdates = ['name','description','location','website','contactEmail','logo','missionStatement','areasOfFocus','foundingYear','socialMediaLinks','images','opportunities'];
-    const update = Object.keys(updateNpoProfileDto)
-      .filter((key) => allowedUpdates.includes(key))
-      .reduce((acc, key) => ({ ...acc, [key]: updateNpoProfileDto[key] }), {});
+    // Update npoProfile with provided dto properties
+    npoProfile.name = updateNpoProfileDto.name;
+    npoProfile.description = updateNpoProfileDto.description;
+    npoProfile.location = updateNpoProfileDto.location;
+    npoProfile.website = updateNpoProfileDto.website;
+    npoProfile.contactEmail = updateNpoProfileDto.contactEmail;
+    npoProfile.logo = updateNpoProfileDto.logo;
+    npoProfile.missionStatement = updateNpoProfileDto.missionStatement;
+    npoProfile.areasOfFocus = updateNpoProfileDto.areasOfFocus;
+    npoProfile.foundingYear = updateNpoProfileDto.foundingYear;
+    npoProfile.socialMediaLinks = updateNpoProfileDto.socialMediaLinks;
+    npoProfile.images = updateNpoProfileDto.images;
 
-    return await this.npoProfileModel.findByIdAndUpdate(id, update, { new: true });
-
+    // Save the updated npoProfile
+    const updatedNpoProfile = await npoProfile.save();
+    return updatedNpoProfile;
   }
 
 
-  async deleteNpoProfileById(id: string, loggedInNpoId: string): Promise<any> {
-    // ... other checks
+  // async deleteNpoProfileById(id: string, loggedInNpoId: string): Promise<any> {
+  //   // ... other checks
   
+  //   const deletedProfile = await this.npoProfileModel.findByIdAndDelete(id);
+  //   if (!deletedProfile) {
+  //     throw new NotFoundException('npo profile not found');
+  //   }
+  //   return { message: 'npo profile deleted successfully' };
+  // }
+
+  async deleteNpoProfileById(id: string): Promise<boolean> {
     const deletedProfile = await this.npoProfileModel.findByIdAndDelete(id);
-    if (!deletedProfile) {
-      throw new NotFoundException('npo profile not found');
-    }
-    return { message: 'npo profile deleted successfully' };
+    return !!deletedProfile; // Returns true if profile was deleted, false if not found
   }
 }

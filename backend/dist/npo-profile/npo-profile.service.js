@@ -45,26 +45,28 @@ let NpoProfileService = NpoProfileService_1 = class NpoProfileService {
             throw new common_2.NotFoundException('Npo not found.');
         return npo;
     }
-    async updateNpoProfileById(id, updateNpoProfileDto, loggedInNpoId) {
+    async updateNpoProfileById(id, updateNpoProfileDto) {
         const npoProfile = await this.npoProfileModel.findById(id);
         if (!npoProfile) {
             throw new common_2.NotFoundException('Npo profile not found');
         }
-        if (npoProfile.npo._id.toString() !== loggedInNpoId.toString()) {
-            throw new common_1.UnauthorizedException('Unauthorized access');
-        }
-        const allowedUpdates = ['name', 'description', 'location', 'website', 'contactEmail', 'logo', 'missionStatement', 'areasOfFocus', 'foundingYear', 'socialMediaLinks', 'images', 'opportunities'];
-        const update = Object.keys(updateNpoProfileDto)
-            .filter((key) => allowedUpdates.includes(key))
-            .reduce((acc, key) => ({ ...acc, [key]: updateNpoProfileDto[key] }), {});
-        return await this.npoProfileModel.findByIdAndUpdate(id, update, { new: true });
+        npoProfile.name = updateNpoProfileDto.name;
+        npoProfile.description = updateNpoProfileDto.description;
+        npoProfile.location = updateNpoProfileDto.location;
+        npoProfile.website = updateNpoProfileDto.website;
+        npoProfile.contactEmail = updateNpoProfileDto.contactEmail;
+        npoProfile.logo = updateNpoProfileDto.logo;
+        npoProfile.missionStatement = updateNpoProfileDto.missionStatement;
+        npoProfile.areasOfFocus = updateNpoProfileDto.areasOfFocus;
+        npoProfile.foundingYear = updateNpoProfileDto.foundingYear;
+        npoProfile.socialMediaLinks = updateNpoProfileDto.socialMediaLinks;
+        npoProfile.images = updateNpoProfileDto.images;
+        const updatedNpoProfile = await npoProfile.save();
+        return updatedNpoProfile;
     }
-    async deleteNpoProfileById(id, loggedInNpoId) {
+    async deleteNpoProfileById(id) {
         const deletedProfile = await this.npoProfileModel.findByIdAndDelete(id);
-        if (!deletedProfile) {
-            throw new common_2.NotFoundException('npo profile not found');
-        }
-        return { message: 'npo profile deleted successfully' };
+        return !!deletedProfile;
     }
 };
 exports.NpoProfileService = NpoProfileService;
