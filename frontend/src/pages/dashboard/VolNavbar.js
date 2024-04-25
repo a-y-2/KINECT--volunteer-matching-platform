@@ -1,55 +1,37 @@
-// DashboardNavbar.js
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import { Navbar, Nav } from 'react-bootstrap';
-import './VolNavbar.css'; // Import custom styles
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import './VolNavbar.css'; 
 
 const VolNavbar = () => {
-  const [showMenu, setShowMenu] = useState(false);
-  const menuRef = useRef(null);
-
-  const toggleMenu = () => {
-    setShowMenu(!showMenu);
-  };
-
-  useEffect(() => {
-    const handleClickOutside = (event) => {
-      if (menuRef.current && !menuRef.current.contains(event.target)) {
-        setShowMenu(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
   return (
     <>
-      {/* Navbar with hamburger icon */}
-      <Navbar bg="light" expand="lg">
-        <Navbar.Brand onClick={toggleMenu}>
-          <div className={`menu-icon ${showMenu ? 'open' : ''}`}>
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </Navbar.Brand>
+      <Navbar bg="light" expand="lg" className='custom-navbar'>
+        <Navbar.Brand>Logo</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Nav.Link onClick={handleLogout}>Logout</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
       </Navbar>
 
       {/* Side menu panel */}
-      {showMenu && (
-        <div className="side-menu" ref={menuRef}>
-          <Nav className="flex-column">
-            <Nav.Link href="#profile">My Profile</Nav.Link>
-            <Nav.Link href="#impacts">Impacts</Nav.Link>
-            <Nav.Link href="#enrolled">Enrolled</Nav.Link>
-          </Nav>
-        </div>
-      )}
+      <div className="side-menu">
+        <Nav className="flex-column">
+          {/* Use Link instead of Nav.Link for navigation */}
+          <Link to="/dashboard-opportunities" className="nav-link">Opportunities</Link>
+          <Link to="/volunteer-profile" className="nav-link">My Profile</Link>
+          <Link to="/impacts" className="nav-link">Impacts</Link>
+          <Link to="/enrolled" className="nav-link">Enrolled</Link>
+        </Nav>
+      </div>
     </>
   );
+};
+
+const handleLogout = () => {
+  // Implement logout functionality here
 };
 
 export default VolNavbar;
