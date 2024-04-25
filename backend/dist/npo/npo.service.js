@@ -29,6 +29,9 @@ let NpoService = class NpoService {
         });
         return npo;
     }
+    async findByName(name) {
+        return this.npoModel.findOne({ name }).exec();
+    }
     async create(npo) {
         const createdNpo = await this.npoModel.create(npo);
         return createdNpo;
@@ -36,6 +39,9 @@ let NpoService = class NpoService {
     async hashPassword(password) {
         const salt = await bcrypt.genSalt(10);
         return bcrypt.hash(password, salt);
+    }
+    async findById(id) {
+        return this.npoModel.findById(id).exec();
     }
 };
 exports.NpoService = NpoService;

@@ -20,6 +20,10 @@ export class NpoService { // Renamed from UserService to NpoService
     return npo;
   }
 
+  async findByName(name: string): Promise<Npo | null> {
+    return this.npoModel.findOne({ name }).exec();
+  }
+
   async create(npo: Partial<NpoDocument>): Promise<NpoDocument> {
     const createdNpo = await this.npoModel.create(npo);
     return createdNpo;
@@ -28,5 +32,9 @@ export class NpoService { // Renamed from UserService to NpoService
   private async hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(10);
     return bcrypt.hash(password, salt);
+  }
+
+  async findById(id: string): Promise<Npo | null> {
+    return this.npoModel.findById(id).exec();
   }
 }

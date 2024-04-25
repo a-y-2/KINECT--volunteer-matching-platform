@@ -58,4 +58,4 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
     }
     return user; // Attach the authenticated user object to the request
   }
-}
+} 

@@ -13,9 +13,11 @@ exports.AuthService = void 0;
 const common_1 = require("@nestjs/common");
 const jwt_1 = require("@nestjs/jwt");
 const user_service_1 = require("../user/user.service");
+const npo_service_1 = require("../npo/npo.service");
 let AuthService = class AuthService {
-    constructor(userService, jwtService) {
+    constructor(userService, npoService, jwtService) {
         this.userService = userService;
+        this.npoService = npoService;
         this.jwtService = jwtService;
     }
     async validateUser(email, password) {
@@ -61,6 +63,7 @@ exports.AuthService = AuthService;
 exports.AuthService = AuthService = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [user_service_1.UserService,
+        npo_service_1.NpoService,
         jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map
