@@ -1,13 +1,11 @@
-// Footer.js
-
 import React from 'react';
 import './Footer.css'
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="custom-bg-color py-4 text-center">
       <div className="container">
-        <p>&copy; 2024 Your Company Name</p>
+        <p className="text-muted mb-0">&copy; 2024 Your Company Name</p>
       </div>
     </footer>
   );

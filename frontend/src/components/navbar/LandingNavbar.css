@@ -1,0 +1,35 @@
+
+.navbar-nav .nav-link {
+  color: #001D3D;
+}
+
+.container{
+  width: 100%;
+}
+
+.navbar{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 6rem;
+}
+
+.navbar.custom-navbar {
+  background-color: #ffffff;
+  padding: 30px; /* Add padding to the top */
+}
+
+.custom-navbar .nav-link {
+  padding-top: 10px; /* Increase top padding of navbar links */
+  padding-bottom: 10px; /* Increase bottom padding of navbar links */
+}
+
+.custom-navbar .nav-item {
+  margin-right: 20px; /* Adjust the margin-right value as needed */
+}
+
+.navbar-nav {
+  margin-right: 50px; /* Adjust the margin-right value as needed */
+}
+
+.nav-items{
+  margin-right: 50px;
+}
