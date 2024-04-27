@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document, Types } from 'mongoose'; // Import Types from mongoose
-import { NpoProfile } from './npo-profile.schema';
+import mongoose, { Document, Types } from 'mongoose'; // Import Types from mongoose
+import { Npo} from '../../npo/npo.model';
 
 @Schema()
 export class Opportunity extends Document {
@@ -19,8 +19,8 @@ export class Opportunity extends Document {
   @Prop({ required: true })
   endDate: Date;
 
-  @Prop({ type: Types.ObjectId, ref: 'NpoProfile' })
-  npoProfile: Types.ObjectId; // Use Types.ObjectId for reference
+  @Prop({ type:mongoose.Schema.Types.ObjectId,required:true,ref:'Npo' })
+  npo: Npo; // Use Types.ObjectId for reference
 
   @Prop({ nullable: true })
   timeCommitment?: string; // Optional time commitment description (e.g., weekly, monthly)
@@ -39,3 +39,4 @@ export class Opportunity extends Document {
 }
 
 export const OpportunitySchema = SchemaFactory.createForClass(Opportunity);
+export type OpportunityDocument = Opportunity & Document;

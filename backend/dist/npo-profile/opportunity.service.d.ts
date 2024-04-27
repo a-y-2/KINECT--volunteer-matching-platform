@@ -22,24 +22,17 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import mongoose, { Document, Types } from 'mongoose';
-import { NpoProfile } from './npo-profile.schema';
-export declare class Opportunity extends Document {
-    title: string;
-    description: string;
-    skillsRequired: string;
-    startDate: Date;
-    endDate: Date;
-    npoProfile: NpoProfile;
-    timeCommitment?: string;
-    location?: string;
-    applicationLink?: string;
-    contactEmail?: string;
-    website?: string;
+import { Model } from 'mongoose';
+import { CreateOpportunityDto, UpdateOpportunityDto } from './dto/opportunity.dto';
+import { Opportunity, OpportunityDocument } from './entities/opportunity.schema';
+export declare class OpportunityService {
+    private readonly opportunityModel;
+    constructor(opportunityModel: Model<OpportunityDocument>);
+    createOpportunity(createOpportunityDto: CreateOpportunityDto): Promise<Opportunity>;
+    findAll(): Promise<Opportunity[]>;
+    findByNpoProfile(npoProfileId: string): Promise<Opportunity[]>;
+    findOne(id: string): Promise<Opportunity | null>;
+    update(id: string, updateOpportunityDto: UpdateOpportunityDto): Promise<Opportunity | null>;
+    delete(id: string): Promise<Opportunity | null>;
+    addOpportunityToNpoProfile(opportunityId: string): Promise<void>;
 }
-export declare const OpportunitySchema: mongoose.Schema<Opportunity, mongoose.Model<Opportunity, any, any, any, mongoose.Document<unknown, any, Opportunity> & Opportunity & {
-    _id: Types.ObjectId;
-}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Opportunity, mongoose.Document<unknown, {}, mongoose.FlatRecord<Opportunity>> & mongoose.FlatRecord<Opportunity> & {
-    _id: Types.ObjectId;
-}>;
-export type OpportunityDocument = Opportunity & Document;

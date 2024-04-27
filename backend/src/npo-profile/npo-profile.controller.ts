@@ -164,6 +164,16 @@ private readonly logger = new Logger(NpoProfileController.name);
   //   }
   // }
 
+
+
+
+
+  /*
+  @Param('id') id: string: Decorator to extract the id value from the URL path parameter. It enforces the parameter type 
+  to be a string.
+  @Body() updateNpoProfileDto: any: Decorator to extract the request body. In this case, it captures the entire request body
+  as a JavaScript object (any)
+  */
   @Put(':id')
   async updateNpoProfileById(
     @Param('id') id: string,
@@ -175,6 +185,13 @@ private readonly logger = new Logger(NpoProfileController.name);
     }
     return npoProfile;
   }
+
+
+
+
+
+
+  
 
   //@UseGuards(NpoAuthGuard)
   @Delete(':id')

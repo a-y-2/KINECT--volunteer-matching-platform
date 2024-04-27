@@ -47,3 +47,5 @@ export class NpoProfile extends Document {
 
 export const NpoProfileSchema = SchemaFactory.createForClass(NpoProfile);
 export type NpoProfileDocument = NpoProfile & Document;
+
+export { Npo };

@@ -8,6 +8,8 @@ import { NpoAuthModule } from '../auth/npo-auth.module';
 import { Npo, NpoSchema } from '../npo/npo.model';
 import { MongooseModule } from '@nestjs/mongoose';
 import { NpoProfileSchema,NpoProfile } from './entities/npo-profile.schema';
+
+
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: NpoProfile.name, schema: NpoProfileSchema }]),
@@ -18,6 +20,7 @@ import { NpoProfileSchema,NpoProfile } from './entities/npo-profile.schema';
     }),
     NpoAuthModule, // Example import for UserModule (if needed)
     NpoModule,
+ 
   ],
   controllers: [NpoProfileController],
   providers: [NpoProfileService, NpoAuthGuard], // Ensure JwtAuthGuard is provided

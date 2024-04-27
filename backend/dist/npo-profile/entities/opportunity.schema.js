@@ -12,6 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.OpportunitySchema = exports.Opportunity = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
+const npo_profile_schema_1 = require("./npo-profile.schema");
 let Opportunity = class Opportunity extends mongoose_2.Document {
 };
 exports.Opportunity = Opportunity;
@@ -36,8 +37,8 @@ __decorate([
     __metadata("design:type", Date)
 ], Opportunity.prototype, "endDate", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: 'NpoProfile' }),
-    __metadata("design:type", mongoose_2.Types.ObjectId)
+    (0, mongoose_1.Prop)({ type: mongoose_2.default.Schema.Types.ObjectId, required: true, ref: 'NpoProfile' }),
+    __metadata("design:type", npo_profile_schema_1.NpoProfile)
 ], Opportunity.prototype, "npoProfile", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),

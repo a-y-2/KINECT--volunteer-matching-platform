@@ -8,27 +8,27 @@ export class CreateUserDto {
   @MinLength(6, { message: 'Password is too short.' })
   password: string;
 
-  @IsString()
-  firstName?: string; 
+  // @IsString()
+  // firstName?: string; 
 
-  @IsString()
-  lastName?: string;
+  // @IsString()
+  // lastName?: string;
 
-  @IsString()
-  zipcode?: string;
+  // @IsString()
+  // zipcode?: string;
 
-  @IsString()
-  city?: string;
+  // @IsString()
+  // city?: string;
 
-  @IsString()
-  state?: string;
+  // @IsString()
+  // state?: string;
 
   @IsString()
   dob?: Date;
 
-  @IsString({ each: true }) 
-  skills?: string[];
+  // @IsString({ each: true }) 
+  // skills?: string[];
 
-  @IsString({ each: true })
-  interests?: string[];
+  // @IsString({ each: true })
+  // interests?: string[];
 }
