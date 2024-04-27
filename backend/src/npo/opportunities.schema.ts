@@ -1,9 +1,10 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document, Types } from 'mongoose'; // Import Types from mongoose
-import { Npo} from '../../npo/npo.model';
+import { Npo} from './npo.model';
 
 @Schema()
-export class Opportunity extends Document {
+export class Opportunities extends Document {
+  
   @Prop({ required: true })
   title: string;
 
@@ -38,5 +39,5 @@ export class Opportunity extends Document {
   website?: string; // Optional website
 }
 
-export const OpportunitySchema = SchemaFactory.createForClass(Opportunity);
-export type OpportunityDocument = Opportunity & Document;
+export const OpportunitiesSchema = SchemaFactory.createForClass(Opportunities);
+export type OpportunitiesDocument = Opportunities & Document;

@@ -14,7 +14,7 @@ import { UserProfileModule } from './user-profile/user-profile.module';
 import { AuthModule } from './auth/auth.module';
 import { NpoProfileModule } from './npo-profile/npo-profile.module';
 import { NpoAuthModule } from './auth/npo-auth.module';
-import { NpoOpportunityModule } from './npo-profile/opportunity.module';
+// import { NpoOpportunityModule } from './npo-profile/opportunity.module';
 // import { CorsModule } from '@nestjs/common';
 
 
@@ -46,14 +46,15 @@ import { NpoOpportunityModule } from './npo-profile/opportunity.module';
             AuthModule,
             NpoProfileModule,
             NpoAuthModule,
-            NpoOpportunityModule
+            // NpoOpportunityModule
   ],
   controllers: [AppController],
   providers: [AppService,UserModule,NpoModule,
     UserProfileModule,
     AuthModuleUser,
     AuthModule,
-    NpoAuthModule,NpoProfileModule,AuthModuleNpo,NpoOpportunityModule],
+    NpoAuthModule,NpoProfileModule,AuthModuleNpo,
+    // NpoOpportunityModule],
   //exports: [UserService],
-})
+]})
 export class AppModule {}

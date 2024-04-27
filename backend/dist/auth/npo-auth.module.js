@@ -18,6 +18,7 @@ const mongoose_1 = require("@nestjs/mongoose");
 const user_service_1 = require("../user/user.service");
 const npo_service_2 = require("../npo/npo.service");
 const npo_module_1 = require("../npo/npo.module");
+const opportunities_schema_1 = require("../npo/opportunities.schema");
 let NpoAuthModule = class NpoAuthModule {
 };
 exports.NpoAuthModule = NpoAuthModule;
@@ -27,6 +28,7 @@ exports.NpoAuthModule = NpoAuthModule = __decorate([
             npo_module_1.NpoModule,
             mongoose_1.MongooseModule.forFeature([{ name: user_model_1.User.name, schema: user_model_1.UserSchema }]),
             mongoose_1.MongooseModule.forFeature([{ name: npo_model_1.Npo.name, schema: npo_model_1.NpoSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: opportunities_schema_1.Opportunities.name, schema: opportunities_schema_1.OpportunitiesSchema }]),
             passport_1.PassportModule.register({ defaultStrategy: 'jwt' }),
             jwt_1.JwtModule.register({
                 secret: 'abcd',

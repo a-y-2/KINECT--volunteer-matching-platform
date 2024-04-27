@@ -9,12 +9,14 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserService } from 'src/user/user.service';
 import {NpoService} from '../npo/npo.service';
 import {NpoModule} from '../npo/npo.module';
+import { Opportunities, OpportunitiesSchema } from 'src/npo/opportunities.schema';
 
 @Module({
     imports: [
       NpoModule,
       MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
       MongooseModule.forFeature([{ name: Npo.name, schema: NpoSchema }]),
+      MongooseModule.forFeature([{ name: Opportunities.name, schema: OpportunitiesSchema }]),
       PassportModule.register({ defaultStrategy: 'jwt' }),
       JwtModule.register({
         secret: 'abcd', // Replace with your JWT secret key
