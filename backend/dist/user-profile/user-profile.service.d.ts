@@ -33,6 +33,7 @@ export declare class UserProfileService {
     constructor(userProfileModel: mongoose.Model<UserProfileDocument>, userModel: mongoose.Model<UserDocument>);
     createUserProfile(createUserProfileDto: CreateUserProfileDto, loggedInUserId: string): Promise<UserProfile>;
     getUserProfileById(id: string): Promise<UserProfileDocument>;
+    getParentDocumentId(userId: string): Promise<string | null>;
     updateUserProfileById(id: string, updateUserProfileDto: any, loggedInUserId: string): Promise<UserProfile | null>;
     deleteUserProfileById(id: string, loggedInUserId: string): Promise<any>;
 }
