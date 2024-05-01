@@ -7,33 +7,37 @@ export class CreateOpportunityDto {
 
   @IsNotEmpty()
   @IsString()
-  description: string;
+  npoId: string;
 
-  @IsNotEmpty()
-  @IsString()
-  skillsRequired: string;
+  // @IsNotEmpty()
+  // @IsString()
+  // description: string;
 
-  @IsNotEmpty()
-  @IsDateString()
-  startDate: Date;
+  // @IsNotEmpty()
+  // @IsString()
+  // skillsRequired: string;
 
-  @IsNotEmpty()
-  @IsDateString()
-  endDate: Date;
+  // @IsNotEmpty()
+  // @IsDateString()
+  // startDate: Date;
 
-  @IsNotEmpty()
-  @IsString()
-  npoProfile: string;
+  // @IsNotEmpty()
+  // @IsDateString()
+  // endDate: Date;
 
-  @IsOptional()
-  @IsString()
-  location?: string;
+  // @IsNotEmpty()
+  // @IsString()
+  // npoProfile: string;
 
-  @IsOptional()
-  @IsString()
-  contactEmail?: string;
+  // @IsOptional()
+  // @IsString()
+  // location?: string;
 
-  @IsOptional()
-  @IsString()
-  website?: string;
+  // @IsOptional()
+  // @IsString()
+  // contactEmail?: string;
+
+  // @IsOptional()
+  // @IsString()
+  // website?: string;
 }

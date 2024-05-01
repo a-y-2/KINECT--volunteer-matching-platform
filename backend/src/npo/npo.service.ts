@@ -67,24 +67,32 @@ export class NpoService {
   //   return createdOpportunity;
   // }
 
+  async isNpo(npoId: string): Promise<string | null | boolean> {
+    try {
+      const document = await this.npoModel.findOne({ 'npo._id': npoId });
+
+      if (document) {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      // Handle any errors (e.g., database connection issues, query errors)
+      console.error('Error occurred while querying npo collection:', error);
+      throw error; // Optionally rethrow the error for the caller to handle
+    }
+  }
+
+
   async createOpportunity(npoId: string, createOpportunityDto: CreateOpportunityDto): Promise<OpportunitiesDocument> {
     // Check if NPO exists
-    try {
-      const npo = await this.npoModel.findById(npoId);
-      if (!npo) {
-        throw new NotFoundException('NPO not found');
-      }
-  
-      this.logger.warn(`NPO with ID ${npoId} found for opportunity creation.`); // Log NPO found for context
-  
-      // **Optional Type Assertion (if unsure about npo type):**
-      const typedNpo = npo as NpoDocument; // Assert npo to be of NpoDocument type
-    } catch (error) {
-      this.logger.error('Error finding NPO:', error); // Log error details if NPO not found
-      throw error; // Re-throw the error for proper handling
+    
+    const isnpo = await this.isNpo(npoId);
+    if(!isnpo){
+      console.error('npo not found');
     }
-  
-    // Map DTO properties to Opportunity object
+    else{
+      // Map DTO properties to Opportunity object
     const opportunity = new Opportunities({
       ...createOpportunityDto,
       npo: npoId,
@@ -99,6 +107,9 @@ export class NpoService {
       this.logger.error('Error creating opportunity:', error); // Log error details on opportunity creation failure
       throw error; // Re-throw the error for proper handling
     }
+    }
+  
+    
   }
   
 
@@ -106,4 +117,18 @@ export class NpoService {
   // async findOpportunitiesByNpo(npoId: string): Promise<OpportunitiesDocument[]> {
   //   return this.opportunitiesModel.find({ npo: npoId }).exec();
   // }
+
+  async findAll(): Promise<any[]> {
+    try {
+      const documents = await this.opportunitiesModel.find().exec();
+      return documents;
+    } catch (error) {
+      console.error('Error occurred while fetching all documents:', error);
+      throw error;
+    }
+  }
+
+
+
+
 }

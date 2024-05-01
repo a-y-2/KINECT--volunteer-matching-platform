@@ -12,5 +12,7 @@ export declare class NpoService {
     create(npo: Partial<NpoDocument>): Promise<NpoDocument>;
     private hashPassword;
     findById(id: string): Promise<Npo | null>;
+    isNpo(npoId: string): Promise<string | null | boolean>;
     createOpportunity(npoId: string, createOpportunityDto: CreateOpportunityDto): Promise<OpportunitiesDocument>;
+    findAll(): Promise<any[]>;
 }

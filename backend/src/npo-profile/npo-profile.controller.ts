@@ -52,7 +52,7 @@ private readonly logger = new Logger(NpoProfileController.name);
   //     // Rethrowing the error to be handled by global error handler
   //     throw error;
   //   }
-  // }
+  // } 
 
   @Post()
   async createNpoProfile(

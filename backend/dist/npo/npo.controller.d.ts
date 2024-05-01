@@ -7,4 +7,5 @@ export declare class NpoController {
     constructor(npoService: NpoService);
     register(createNpoDto: CreateNpoDto): Promise<NpoDocument>;
     createOpportunity(createOpportunityDto: CreateOpportunityDto, req: any): Promise<import("./opportunities.schema").OpportunitiesDocument>;
+    getOpportunities(): Promise<any>;
 }

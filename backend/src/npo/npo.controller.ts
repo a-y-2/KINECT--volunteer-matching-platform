@@ -1,8 +1,9 @@
-import { BadRequestException, Body, Controller, Post, Req } from '@nestjs/common';
+import { BadRequestException, Body, Controller, Post, Req ,Get, NotFoundException} from '@nestjs/common';
 import { CreateNpoDto } from './npo.dto';
 import { NpoService } from './npo.service';
 import { NpoDocument } from './npo.model';
 import { CreateOpportunityDto } from './opportunity.dto';
+import { Opportunities } from './opportunities.schema';
 
 @Controller('npo') // Path for NPO routes
 export class NpoController { // Renamed to NpoController
@@ -19,17 +20,30 @@ export class NpoController { // Renamed to NpoController
 
   @Post('opportunity')
   async createOpportunity(@Body() createOpportunityDto: CreateOpportunityDto, @Req() req) {
-    const npoId = req.body.npoId || req.headers['npo-id']; 
-    if (!npoId) {
-      throw new BadRequestException('Missing NPO ID in request');
-    }
-
-    // Validation or checks to ensure a valid NPO is creating the opportunity
-    if (!npoId) { 
-      throw new BadRequestException('Invalid NPO credentials or authorization');
-    }
+    const npoId = req.body.npoId;   
 
     const opportunity = await this.npoService.createOpportunity(npoId, createOpportunityDto);
     return opportunity;
   }
+
+  @Get('opportunity')
+  async getOpportunities(): Promise<any> {
+    
+    try {
+     // this.logRequestDetails(req, id);
+
+      // Retrieve user profile by ID using the UserProfileService
+      const opportunities = await this.npoService.findAll();
+
+      if (!opportunities) {
+        
+        throw new NotFoundException(`not found`);
+      }
+      return opportunities;
+    } catch (error) {
+      
+      throw error; 
+    }
+  }
+
 }

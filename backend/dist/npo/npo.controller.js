@@ -26,15 +26,21 @@ let NpoController = class NpoController {
         return npo;
     }
     async createOpportunity(createOpportunityDto, req) {
-        const npoId = req.body.npoId || req.headers['npo-id'];
-        if (!npoId) {
-            throw new common_1.BadRequestException('Missing NPO ID in request');
-        }
-        if (!npoId) {
-            throw new common_1.BadRequestException('Invalid NPO credentials or authorization');
-        }
+        const npoId = req.body.npoId;
         const opportunity = await this.npoService.createOpportunity(npoId, createOpportunityDto);
         return opportunity;
+    }
+    async getOpportunities() {
+        try {
+            const opportunities = await this.npoService.findAll();
+            if (!opportunities) {
+                throw new common_1.NotFoundException(`not found`);
+            }
+            return opportunities;
+        }
+        catch (error) {
+            throw error;
+        }
     }
 };
 exports.NpoController = NpoController;
@@ -53,6 +59,12 @@ __decorate([
     __metadata("design:paramtypes", [opportunity_dto_1.CreateOpportunityDto, Object]),
     __metadata("design:returntype", Promise)
 ], NpoController.prototype, "createOpportunity", null);
+__decorate([
+    (0, common_1.Get)('opportunity'),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], NpoController.prototype, "getOpportunities", null);
 exports.NpoController = NpoController = __decorate([
     (0, common_1.Controller)('npo'),
     __metadata("design:paramtypes", [npo_service_1.NpoService])

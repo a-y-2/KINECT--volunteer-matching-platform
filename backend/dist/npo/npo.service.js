@@ -47,29 +47,48 @@ let NpoService = NpoService_1 = class NpoService {
     async findById(id) {
         return this.npoModel.findById(id).exec();
     }
-    async createOpportunity(npoId, createOpportunityDto) {
+    async isNpo(npoId) {
         try {
-            const npo = await this.npoModel.findById(npoId);
-            if (!npo) {
-                throw new common_1.NotFoundException('NPO not found');
+            const document = await this.npoModel.findOne({ 'npo._id': npoId });
+            if (document) {
+                return true;
             }
-            this.logger.warn(`NPO with ID ${npoId} found for opportunity creation.`);
-            const typedNpo = npo;
+            else {
+                return false;
+            }
         }
         catch (error) {
-            this.logger.error('Error finding NPO:', error);
+            console.error('Error occurred while querying npo collection:', error);
             throw error;
         }
-        const opportunity = new opportunities_schema_1.Opportunities({
-            ...createOpportunityDto,
-            npo: npoId,
-        });
+    }
+    async createOpportunity(npoId, createOpportunityDto) {
+        const isnpo = await this.isNpo(npoId);
+        if (!isnpo) {
+            console.error('npo not found');
+        }
+        else {
+            const opportunity = new opportunities_schema_1.Opportunities({
+                ...createOpportunityDto,
+                npo: npoId,
+            });
+            try {
+                const createdOpportunity = await this.opportunitiesModel.create(opportunity);
+                return createdOpportunity;
+            }
+            catch (error) {
+                this.logger.error('Error creating opportunity:', error);
+                throw error;
+            }
+        }
+    }
+    async findAll() {
         try {
-            const createdOpportunity = await this.opportunitiesModel.create(opportunity);
-            return createdOpportunity;
+            const documents = await this.opportunitiesModel.find().exec();
+            return documents;
         }
         catch (error) {
-            this.logger.error('Error creating opportunity:', error);
+            console.error('Error occurred while fetching all documents:', error);
             throw error;
         }
     }

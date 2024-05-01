@@ -23,14 +23,13 @@
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
 import mongoose, { Document, Types } from 'mongoose';
-import { Npo } from './npo.model';
 export declare class Opportunities extends Document {
     title: string;
     description: string;
     skillsRequired: string;
     startDate: Date;
     endDate: Date;
-    npo: Npo;
+    npoId: string;
     timeCommitment?: string;
     location?: string;
     applicationLink?: string;
