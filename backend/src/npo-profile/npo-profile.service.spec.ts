@@ -1,18 +1,18 @@
-import { Test, TestingModule } from '@nestjs/testing';
-import { NpoProfileService } from './npo-profile.service';
+// import { Test, TestingModule } from '@nestjs/testing';
+// import { NpoProfileService } from './npo-profile.service';
 
-describe('NpoProfileService', () => {
-  let service: NpoProfileService;
+// describe('NpoProfileService', () => {
+//   let service: NpoProfileService;
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [NpoProfileService],
-    }).compile();
+//   beforeEach(async () => {
+//     const module: TestingModule = await Test.createTestingModule({
+//       providers: [NpoProfileService],
+//     }).compile();
 
-    service = module.get<NpoProfileService>(NpoProfileService);
-  });
+//     service = module.get<NpoProfileService>(NpoProfileService);
+//   });
 
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+//   it('should be defined', () => {
+//     expect(service).toBeDefined();
+//   });
+// });

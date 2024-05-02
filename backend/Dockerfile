@@ -1,4 +1,4 @@
-FROM node:18-alpine AS builder
+FROM node:14-alpine
 
 WORKDIR /app
 
@@ -7,15 +7,5 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build     # Build your NestJS backend
-
-FROM node:18-alpine
-
-WORKDIR /app
-
-COPY . .
-
-EXPOSE 3000          # Port for NestJS backend
-
-CMD [ "npm", "start:prod" ]  # Start NestJS in production mode
+CMD ["npm", "run", "start:prod"]
 
