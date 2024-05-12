@@ -9,6 +9,7 @@ import { CreateOpportunityDto } from './opportunity.dto';
 
 @Injectable()
 export class NpoService {
+  [x: string]: any;
   private readonly logger = new Logger(NpoService.name);
   constructor(@InjectModel(Npo.name) private readonly npoModel: any,
               @InjectModel(Opportunities.name) private readonly opportunitiesModel: any

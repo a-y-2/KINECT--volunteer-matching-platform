@@ -5,6 +5,7 @@ import { CreateOpportunityDto } from './opportunity.dto';
 export declare class NpoService {
     private readonly npoModel;
     private readonly opportunitiesModel;
+    [x: string]: any;
     private readonly logger;
     constructor(npoModel: any, opportunitiesModel: any);
     register(createNpoDto: CreateNpoDto): Promise<NpoDocument>;

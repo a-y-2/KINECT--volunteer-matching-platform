@@ -4,6 +4,7 @@ export class CreateNpoDto {
   @IsNotEmpty()
   name: string;
 
+  @IsOptional()
   @IsNotEmpty()
   @IsString()
   @IsEmail()
