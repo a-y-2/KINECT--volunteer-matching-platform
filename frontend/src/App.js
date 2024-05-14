@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Volunteer from './pages/landing/Volunteer/Volunteer';
 import VolDashboard from './pages/dashboard/VolDashboard';
+import VolMyProfile from './pages/dashboard/VolMyProfile';
 
 import LandingNavbar from './components/navbar/LandingNavbar'; // Import LandingNavbar
 import VolNavbar from './pages/dashboard/VolNavbar'; // Import DashboardNavbar
@@ -45,7 +46,28 @@ const App = () => {
                 {/* You can choose to include or exclude Footer component for dashboard */}
               </>
             }
-          />
+          /> 
+           {/* RIGHT NOW, ORG AND DASHBOARD HAVE SAME CONTENT, MAYBE LATER DASHBOARD CAN HAVE REC AND OPPORTUNITIES CAN HAVE EXPLORATION */}
+          <Route
+            path="/dashboard-opportunities"
+            element={
+              <>
+                <VolNavbar />
+                <VolDashboard />
+                {/* You can choose to include or exclude Footer component for dashboard */}
+              </>
+            }
+          />     
+           <Route
+            path="/volunteer-profile"
+            element={
+              <>
+                <VolNavbar />
+                <VolMyProfile />
+                {/* You can choose to include or exclude Footer component for dashboard */}
+              </>
+            }
+          />      
           <Route path="/organization" element={<Organization />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
