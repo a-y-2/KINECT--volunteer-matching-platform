@@ -52,7 +52,7 @@ private readonly logger = new Logger(NpoProfileController.name);
   //     // Rethrowing the error to be handled by global error handler
   //     throw error;
   //   }
-  // }
+  // } 
 
   @Post()
   async createNpoProfile(
@@ -122,7 +122,7 @@ private readonly logger = new Logger(NpoProfileController.name);
 
 
 
-  @UseGuards(NpoAuthGuard)
+  //@UseGuards(NpoAuthGuard)
   @Get(':id')
   async getNpoProfileById(@Param('id') id: string, @Req() req): Promise<NpoProfile> {
     
@@ -164,17 +164,42 @@ private readonly logger = new Logger(NpoProfileController.name);
   //   }
   // }
 
-  @UseGuards(NpoAuthGuard)
+
+
+
+
+  /*
+  @Param('id') id: string: Decorator to extract the id value from the URL path parameter. It enforces the parameter type 
+  to be a string.
+  @Body() updateNpoProfileDto: any: Decorator to extract the request body. In this case, it captures the entire request body
+  as a JavaScript object (any)
+  */
   @Put(':id')
-  async updateNpoProfileById(@Req() req, @Param('id') id: string, @Body() updateNpoProfileDto: any): Promise<NpoProfile> {
-    const loggedInNpoId = req.npo._id; // Extract user ID from the authenticated request
-    return this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto, loggedInNpoId);
+  async updateNpoProfileById(
+    @Param('id') id: string,
+    @Body() updateNpoProfileDto: any,
+  ): Promise<NpoProfile | null> {
+    const npoProfile = await this.npoProfileService.updateNpoProfileById(id, updateNpoProfileDto);
+    if (!npoProfile) {
+      throw new NotFoundException('Npo profile not found');
+    }
+    return npoProfile;
   }
 
-  @UseGuards(NpoAuthGuard)
+
+
+
+
+
+  
+
+  //@UseGuards(NpoAuthGuard)
   @Delete(':id')
-  async deleteNpoProfileById(@Req() req, @Param('id') id: string): Promise<any> {
-    const loggedInNpoId = req.npo.npoId; // Extract user ID from the authenticated request
-    return this.npoProfileService.deleteNpoProfileById(id, loggedInNpoId);
+  async deleteNpoProfileById(@Param('id') id: string): Promise<{ message: string }> {
+    const result = await this.npoProfileService.deleteNpoProfileById(id);
+    if (!result) {
+      throw new NotFoundException('Npo profile not found');
+    }
+    return { message: 'Npo profile deleted successfully' };
   }
 }

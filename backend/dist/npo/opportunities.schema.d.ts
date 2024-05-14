@@ -22,22 +22,23 @@
 /// <reference types="mongoose/types/validation" />
 /// <reference types="mongoose/types/virtuals" />
 /// <reference types="mongoose/types/inferschematype" />
-import { Document, Types } from 'mongoose';
-export declare class Opportunity extends Document {
+import mongoose, { Document, Types } from 'mongoose';
+export declare class Opportunities extends Document {
     title: string;
     description: string;
     skillsRequired: string;
     startDate: Date;
     endDate: Date;
-    npoProfile: Types.ObjectId;
+    npoId: string;
     timeCommitment?: string;
     location?: string;
     applicationLink?: string;
     contactEmail?: string;
     website?: string;
 }
-export declare const OpportunitySchema: import("mongoose").Schema<Opportunity, import("mongoose").Model<Opportunity, any, any, any, Document<unknown, any, Opportunity> & Opportunity & {
+export declare const OpportunitiesSchema: mongoose.Schema<Opportunities, mongoose.Model<Opportunities, any, any, any, mongoose.Document<unknown, any, Opportunities> & Opportunities & {
     _id: Types.ObjectId;
-}, any>, {}, {}, {}, {}, import("mongoose").DefaultSchemaOptions, Opportunity, Document<unknown, {}, import("mongoose").FlatRecord<Opportunity>> & import("mongoose").FlatRecord<Opportunity> & {
+}, any>, {}, {}, {}, {}, mongoose.DefaultSchemaOptions, Opportunities, mongoose.Document<unknown, {}, mongoose.FlatRecord<Opportunities>> & mongoose.FlatRecord<Opportunities> & {
     _id: Types.ObjectId;
 }>;
+export type OpportunitiesDocument = Opportunities & Document;

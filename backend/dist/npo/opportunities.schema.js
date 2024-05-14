@@ -9,58 +9,58 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.OpportunitySchema = exports.Opportunity = void 0;
+exports.OpportunitiesSchema = exports.Opportunities = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
-let Opportunity = class Opportunity extends mongoose_2.Document {
+let Opportunities = class Opportunities extends mongoose_2.Document {
 };
-exports.Opportunity = Opportunity;
+exports.Opportunities = Opportunities;
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "title", void 0);
+], Opportunities.prototype, "title", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "description", void 0);
+], Opportunities.prototype, "description", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "skillsRequired", void 0);
-__decorate([
-    (0, mongoose_1.Prop)({ required: true }),
-    __metadata("design:type", Date)
-], Opportunity.prototype, "startDate", void 0);
+], Opportunities.prototype, "skillsRequired", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ required: true }),
     __metadata("design:type", Date)
-], Opportunity.prototype, "endDate", void 0);
+], Opportunities.prototype, "startDate", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ type: mongoose_2.Types.ObjectId, ref: 'NpoProfile' }),
-    __metadata("design:type", mongoose_2.Types.ObjectId)
-], Opportunity.prototype, "npoProfile", void 0);
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", Date)
+], Opportunities.prototype, "endDate", void 0);
+__decorate([
+    (0, mongoose_1.Prop)({ required: true }),
+    __metadata("design:type", String)
+], Opportunities.prototype, "npoId", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "timeCommitment", void 0);
+], Opportunities.prototype, "timeCommitment", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "location", void 0);
+], Opportunities.prototype, "location", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "applicationLink", void 0);
+], Opportunities.prototype, "applicationLink", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "contactEmail", void 0);
+], Opportunities.prototype, "contactEmail", void 0);
 __decorate([
     (0, mongoose_1.Prop)({ nullable: true }),
     __metadata("design:type", String)
-], Opportunity.prototype, "website", void 0);
-exports.Opportunity = Opportunity = __decorate([
+], Opportunities.prototype, "website", void 0);
+exports.Opportunities = Opportunities = __decorate([
     (0, mongoose_1.Schema)()
-], Opportunity);
-exports.OpportunitySchema = mongoose_1.SchemaFactory.createForClass(Opportunity);
-//# sourceMappingURL=opportunity.schema.js.map
+], Opportunities);
+exports.OpportunitiesSchema = mongoose_1.SchemaFactory.createForClass(Opportunities);
+//# sourceMappingURL=opportunities.schema.js.map

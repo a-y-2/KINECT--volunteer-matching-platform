@@ -34,6 +34,8 @@ export class UserProfileService {
     return await newUserProfile.save();
   }
 
+
+
   // async getUserProfileById(id: string): Promise<UserProfile | null> {
   //   return await this.userProfileModel.findById(id).populate('user', '-password'); // Exclude password
   // }
@@ -50,7 +52,21 @@ export class UserProfileService {
   }
 
 
+ async getParentDocumentId(userId: string): Promise<string | null> {
+    try {
+      const document = await this.userProfileModel.findOne({ 'user._id': userId });
 
+      if (document) {
+        return document._id;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      // Handle any errors (e.g., database connection issues, query errors)
+      console.error('Error occurred while querying user_profiles collection:', error);
+      throw error; // Optionally rethrow the error for the caller to handle
+    }
+  }
 
 
 

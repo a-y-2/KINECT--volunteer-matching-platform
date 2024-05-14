@@ -13,6 +13,7 @@ const auth_service_1 = require("./auth.service");
 const auth_controller_1 = require("./auth.controller");
 const npo_model_1 = require("./npo.model");
 const jwt_1 = require("@nestjs/jwt");
+const opportunities_schema_1 = require("./opportunities.schema");
 let AuthModuleNpo = class AuthModuleNpo {
 };
 exports.AuthModuleNpo = AuthModuleNpo;
@@ -20,6 +21,7 @@ exports.AuthModuleNpo = AuthModuleNpo = __decorate([
     (0, common_1.Module)({
         imports: [
             mongoose_1.MongooseModule.forFeature([{ name: npo_model_1.Npo.name, schema: npo_model_1.NpoSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: opportunities_schema_1.Opportunities.name, schema: opportunities_schema_1.OpportunitiesSchema }]),
             jwt_1.JwtModule.register({
                 secret: 'abcd',
                 signOptions: { expiresIn: '30m' },

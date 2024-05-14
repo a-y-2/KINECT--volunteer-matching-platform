@@ -33,6 +33,8 @@ export declare class NpoProfileController {
     constructor(npoProfileService: NpoProfileService, npoProfileModel: Model<NpoProfile>);
     createNpoProfile(req: any, createNpoProfileDto: CreateNpoProfileDto, loggedInNpoId: string): Promise<NpoProfile>;
     getNpoProfileById(id: string, req: any): Promise<NpoProfile>;
-    updateNpoProfileById(req: any, id: string, updateNpoProfileDto: any): Promise<NpoProfile>;
-    deleteNpoProfileById(req: any, id: string): Promise<any>;
+    updateNpoProfileById(id: string, updateNpoProfileDto: any): Promise<NpoProfile | null>;
+    deleteNpoProfileById(id: string): Promise<{
+        message: string;
+    }>;
 }

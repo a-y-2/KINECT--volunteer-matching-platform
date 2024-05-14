@@ -60,6 +60,21 @@ let UserProfileController = UserProfileController_1 = class UserProfileControlle
             throw error;
         }
     }
+    async getProfileId(id) {
+        try {
+            const Profile = await this.userProfileService.getParentDocumentId(id);
+            if (!Profile) {
+                this.logger.warn(`User profile with ID ${id} not found`);
+                throw new common_1.NotFoundException(`User profile with ID ${id} not found`);
+            }
+            this.logger.log(`User profile retrieved successfully: ${JSON.stringify(Profile)}`);
+            return Profile;
+        }
+        catch (error) {
+            this.logger.error(`Error retrieving user profile: ${error.message}`);
+            throw error;
+        }
+    }
     async updateUserProfileById(req, id, updateUserProfileDto) {
         const loggedInUserId = req.user._id;
         return this.userProfileService.updateUserProfileById(id, updateUserProfileDto, loggedInUserId);
@@ -88,6 +103,14 @@ __decorate([
     __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], UserProfileController.prototype, "getUserProfileById", null);
+__decorate([
+    (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
+    (0, common_1.Get)('/profileId/:id'),
+    __param(0, (0, common_1.Param)('id')),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserProfileController.prototype, "getProfileId", null);
 __decorate([
     (0, common_1.UseGuards)(jwt_auth_guard_1.JwtAuthGuard),
     (0, common_1.Put)(':id'),

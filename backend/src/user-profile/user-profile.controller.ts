@@ -136,6 +136,30 @@ private readonly logger = new Logger(UserProfileController.name);
     }
   }
 
+  @UseGuards(JwtAuthGuard)
+  @Get('/profileId/:id')
+  async getProfileId(@Param('id') id: string): Promise<any> {
+    
+    try {
+     // this.logRequestDetails(req, id);
+
+      // Retrieve user profile by ID using the UserProfileService
+      const Profile = await this.userProfileService.getParentDocumentId(id);
+
+      if (!Profile) {
+        this.logger.warn(`User profile with ID ${id} not found`); 
+        throw new NotFoundException(`User profile with ID ${id} not found`);
+      }
+
+      this.logger.log(`User profile retrieved successfully: ${JSON.stringify(Profile)}`);
+
+      return Profile;
+    } catch (error) {
+      this.logger.error(`Error retrieving user profile: ${error.message}`);
+      throw error; 
+    }
+  }
+
   // private logRequestDetails(req, id: string): void {
   //   this.logger.log(`Received request to retrieve user profile with ID: ${id}`);
   //   this.logger.log(`Request Method: ${req.method}`);

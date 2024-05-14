@@ -45,6 +45,21 @@ let UserProfileService = UserProfileService_1 = class UserProfileService {
             throw new common_2.NotFoundException('User not found.');
         return user;
     }
+    async getParentDocumentId(userId) {
+        try {
+            const document = await this.userProfileModel.findOne({ 'user._id': userId });
+            if (document) {
+                return document._id;
+            }
+            else {
+                return null;
+            }
+        }
+        catch (error) {
+            console.error('Error occurred while querying user_profiles collection:', error);
+            throw error;
+        }
+    }
     async updateUserProfileById(id, updateUserProfileDto, loggedInUserId) {
         const userProfile = await this.userProfileModel.findById(id);
         if (!userProfile) {

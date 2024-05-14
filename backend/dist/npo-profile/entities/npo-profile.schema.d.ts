@@ -44,3 +44,4 @@ export declare const NpoProfileSchema: import("mongoose").Schema<NpoProfile, imp
     _id: Types.ObjectId;
 }>;
 export type NpoProfileDocument = NpoProfile & Document;
+export { Npo };

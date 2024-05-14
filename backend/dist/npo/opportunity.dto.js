@@ -9,22 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.CreateUserDto = void 0;
+exports.CreateOpportunityDto = void 0;
 const class_validator_1 = require("class-validator");
-class CreateUserDto {
+class CreateOpportunityDto {
 }
-exports.CreateUserDto = CreateUserDto;
+exports.CreateOpportunityDto = CreateOpportunityDto;
 __decorate([
-    (0, class_validator_1.IsEmail)(),
-    __metadata("design:type", String)
-], CreateUserDto.prototype, "email", void 0);
-__decorate([
+    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    (0, class_validator_1.MinLength)(6, { message: 'Password is too short.' }),
     __metadata("design:type", String)
-], CreateUserDto.prototype, "password", void 0);
+], CreateOpportunityDto.prototype, "title", void 0);
 __decorate([
+    (0, class_validator_1.IsNotEmpty)(),
     (0, class_validator_1.IsString)(),
-    __metadata("design:type", Date)
-], CreateUserDto.prototype, "dob", void 0);
-//# sourceMappingURL=user.dto.js.map
+    __metadata("design:type", String)
+], CreateOpportunityDto.prototype, "npoId", void 0);
+//# sourceMappingURL=opportunity.dto.js.map

@@ -11,6 +11,7 @@ import { UserService } from 'src/user/user.service';
 import {NpoService} from '../npo/npo.service';
 import { UserModule } from 'src/user/user.module';
 import {NpoModule} from '../npo/npo.module';
+import { Opportunities, OpportunitiesSchema } from 'src/npo/opportunities.schema';
 
 
 @Module({
@@ -19,6 +20,7 @@ import {NpoModule} from '../npo/npo.module';
     NpoModule,
     MongooseModule.forFeature([{ name: User.name, schema: UserSchema }]),
     MongooseModule.forFeature([{ name: Npo.name, schema: NpoSchema }]),
+    MongooseModule.forFeature([{ name: Opportunities.name, schema: OpportunitiesSchema }]),
     PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: 'abcd', // Replace with your JWT secret key

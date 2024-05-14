@@ -9,10 +9,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.NpoProfileSchema = exports.NpoProfile = void 0;
+exports.Npo = exports.NpoProfileSchema = exports.NpoProfile = void 0;
 const mongoose_1 = require("@nestjs/mongoose");
 const mongoose_2 = require("mongoose");
 const npo_model_1 = require("../../npo/npo.model");
+Object.defineProperty(exports, "Npo", { enumerable: true, get: function () { return npo_model_1.Npo; } });
 let NpoProfile = class NpoProfile extends mongoose_2.Document {
 };
 exports.NpoProfile = NpoProfile;

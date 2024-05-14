@@ -12,15 +12,18 @@ const mongoose_1 = require("@nestjs/mongoose");
 const npo_service_1 = require("./npo.service");
 const npo_model_1 = require("./npo.model");
 const npo_controller_1 = require("./npo.controller");
+const opportunities_schema_1 = require("./opportunities.schema");
 let NpoModule = class NpoModule {
 };
 exports.NpoModule = NpoModule;
 exports.NpoModule = NpoModule = __decorate([
     (0, common_1.Module)({
-        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Npo', schema: npo_model_1.NpoSchema }])],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: 'Npo', schema: npo_model_1.NpoSchema }]),
+            mongoose_1.MongooseModule.forFeature([{ name: 'Opportunities', schema: opportunities_schema_1.OpportunitiesSchema }])],
         providers: [npo_service_1.NpoService],
         exports: [npo_service_1.NpoService],
-        controllers: [npo_controller_1.NpoController],
+        controllers: [npo_controller_1.NpoController,
+        ],
     })
 ], NpoModule);
 //# sourceMappingURL=npo.module.js.map

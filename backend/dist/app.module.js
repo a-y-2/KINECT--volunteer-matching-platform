@@ -41,7 +41,8 @@ exports.AppModule = AppModule = __decorate([
             user_profile_module_1.UserProfileModule,
             auth_module_1.AuthModuleUser,
             auth_module_3.AuthModule,
-            npo_auth_module_1.NpoAuthModule, npo_profile_module_1.NpoProfileModule, auth_module_2.AuthModuleNpo],
+            npo_auth_module_1.NpoAuthModule, npo_profile_module_1.NpoProfileModule, auth_module_2.AuthModuleNpo,
+        ]
     })
 ], AppModule);
 //# sourceMappingURL=app.module.js.map

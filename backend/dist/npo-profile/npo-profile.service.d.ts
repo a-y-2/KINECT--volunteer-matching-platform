@@ -33,6 +33,6 @@ export declare class NpoProfileService {
     constructor(npoProfileModel: mongoose.Model<NpoProfileDocument>, npoModel: mongoose.Model<NpoDocument>);
     createNpoProfile(createNpoProfileDto: CreateNpoProfileDto, loggedInNpoId: string): Promise<NpoProfile>;
     getNpoProfileById(id: string): Promise<NpoProfileDocument>;
-    updateNpoProfileById(id: string, updateNpoProfileDto: any, loggedInNpoId: string): Promise<NpoProfile | null>;
-    deleteNpoProfileById(id: string, loggedInNpoId: string): Promise<any>;
+    updateNpoProfileById(id: string, updateNpoProfileDto: any): Promise<NpoProfile | null>;
+    deleteNpoProfileById(id: string): Promise<boolean>;
 }
