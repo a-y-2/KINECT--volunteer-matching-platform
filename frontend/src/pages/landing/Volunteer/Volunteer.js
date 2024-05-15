@@ -35,7 +35,6 @@ const Volunteer = () => {
                 </div>
             </div>
 
-            
             <div className="carousel">
                 <Carousel interval={null} indicators={false} showArrows={true} controls={true} className="my-carousel">
                     <Carousel.Item>
@@ -71,21 +70,43 @@ const Volunteer = () => {
                         <p className="mb-4">
                             Want to be a part of us?
                         </p>
-                        {/* Your content */}
-                        <div className="flex justify-center">
-                            <Button
-                                className="bg-yellow-200 hover:bg-indigo-100 mr-4 volunteer-button"
-                                onClick={handleShowRegisterModal}
-                            >
-                                Register
-                            </Button>
-                            <Button
-                                className="bg-blue-500 hover:bg-blue-100 volunteer-button"
-                                onClick={handleShowLoginModal}
-                            >
-                                Login
-                            </Button>
-                        </div>
+                        {/* Your content */}                      
+                            <div className="content-holder">
+                                <div className="vol-join w-full md:w-1/2 pr-0 md:pr-2 border-r-0 md:border-r-2 flex flex-col items-center md:items-start">
+                                    <p className="vol-heading text-center md:text-left mb-2">Join as volunteer</p>
+                                    <div className="flex justify-center md:justify-start mb-4 md:mb-0">
+                                        <Button
+                                            className="bg-yellow-200 hover:bg-indigo-100 mr-4 volunteer-button"
+                                            onClick={handleShowRegisterModal}
+                                        >
+                                            Register
+                                        </Button>
+                                        <Button
+                                            className="bg-blue-500 hover:bg-blue-100 volunteer-button"
+                                            onClick={handleShowLoginModal}
+                                        >
+                                            Login
+                                        </Button>
+                                    </div>
+                                </div>
+                                <div className="npo-join w-full md:w-1/2 pl-0 md:pl-2 flex flex-col items-center md:items-start">
+                                    <p className="npo-heading text-center md:text-left mb-2">Join as npo</p>
+                                    <div className="flex justify-center md:justify-start">
+                                        <Button
+                                            className="bg-yellow-200 hover:bg-indigo-100 mr-4 volunteer-button"
+                                            onClick={handleShowRegisterModal}
+                                        >
+                                            Register
+                                        </Button>
+                                        <Button
+                                            className="bg-blue-500 hover:bg-blue-100 volunteer-button"
+                                            onClick={handleShowLoginModal}
+                                        >
+                                            Login
+                                        </Button>
+                                    </div>
+                                </div>
+                            </div>
                         {/* Render the modals */}
                         <CustomModal type="login" show={showLoginModal} onClose={handleCloseModal} />
                         <CustomModal type="register" show={showRegisterModal} onClose={handleCloseModal} />

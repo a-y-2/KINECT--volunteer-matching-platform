@@ -7,7 +7,10 @@ class BackendService {
 
     async login(email, password) {
         try {
-            const response = await axios.post(`${this.baseUrl}/login`, { email, password });
+            console.log(email);
+            console.log(password);
+            const response = await axios.post(`${this.baseUrl}/user/login`, { email, password });
+            console.log(response.data);
             return response.data;
         } catch (error) {
             throw new Error('Login failed');

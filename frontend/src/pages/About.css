@@ -1,0 +1,40 @@
+.about-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin-top: 150px;
+    margin-bottom: 150px;
+  }
+  
+  .about-content {
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .about-content h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  .about-content h3 {
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .about-content p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+  
+  .how-it-works {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .how-it-works li {
+    margin-bottom: 10px;
+  }
+  
