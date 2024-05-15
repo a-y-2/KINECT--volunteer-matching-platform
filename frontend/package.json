@@ -2,7 +2,7 @@
   "name": "kinect-frontend",
   "version": "0.1.0",
   "private": true,
-  "dependencies": {
+    "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -12,12 +12,28 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.10.2",
     "react-dom": "^18.2.0",
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "react-router-dom": "^6.22.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "set PORT=5000 && react-scripts start",
+=======
+=======
+>>>>>>> Stashed changes
+    "react-router-dom": "^6.23.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "PORT=2004 react-scripts start",
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
     "build": "react-scripts build",
+    "start:prod": "serve -s build -l 2004",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

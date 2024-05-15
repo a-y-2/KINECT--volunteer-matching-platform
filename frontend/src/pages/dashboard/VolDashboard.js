@@ -1,4 +1,11 @@
+<<<<<<< Updated upstream
 import React, {useState} from 'react';
+=======
+import React from 'react';
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 import VolNavbar from './VolNavbar';
 import './VolDashboard.css';
 import CustomCard from '../../components/card/CustomCard'; // Import the CustomCard component
@@ -64,6 +71,8 @@ const VolDashboard = () => {
     ];
     
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
    // State to manage which content to display
    const [displayContent, setDisplayContent] = useState("cards");
 
@@ -113,6 +122,30 @@ const VolDashboard = () => {
            </div>
        </div>
    );
+=======
+=======
+>>>>>>> Stashed changes
+    return (
+        <div>          
+            {/* Render the cards */}
+            <div className="card-grid">
+              {sampleCardsData.map(card => (
+                <CustomCard
+                  key={card.id}
+                  imageUrl={card.imageUrl}
+                  title={card.title}
+                  description={card.description}
+                  location={card.location}
+                  organisation={card.organisation} // Add organisation
+                  datePosted={card.datePosted} // Add datePosted
+                  schedule={card.schedule} // Add schedule
+                  externalUrl={card.externalUrl} // Pass externalUrl as a prop
+                />
+              ))}
+            </div>
+        </div>
+    );
+>>>>>>> Stashed changes
 };
 
 export default VolDashboard;

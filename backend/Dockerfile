@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:18-alpine AS builder
 
 WORKDIR /app
 
@@ -7,5 +7,15 @@ RUN npm install
 
 COPY . .
 
-CMD ["npm", "run", "start:prod"]
+RUN npm run build  # build command for NestJS
+
+FROM node:18-alpine
+
+WORKDIR /app
+
+COPY . .
+
+EXPOSE 3000  
+
+CMD [ "npm", "run", "start:prod" ]  #start command for production
 
