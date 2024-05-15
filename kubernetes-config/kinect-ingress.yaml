@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: kinect-ingress
+  labels:
+    name: kinect-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: kinect-frontend-service
+                port:
+                  number: 2004
+          - pathType: Prefix
+            path: "/api"
+            backend:
+              service:
+                name: kinect-backend-service
+                port:
+                  number: 8082
