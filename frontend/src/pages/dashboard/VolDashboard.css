@@ -7,3 +7,44 @@
     margin-right: 30px;
   }
   
+
+  .tables {
+    margin-top: 20px;
+  }
+  
+  .tables table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .tables th {
+    cursor: pointer;
+    padding: 10px 20px;
+    text-align: center;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+  }
+  
+  .tables th:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .tables th:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  
+  .tables th:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+  }
+  
+  .tables th.active {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  .tables th.active:hover {
+    background-color: #0056b3;
+  }
+  

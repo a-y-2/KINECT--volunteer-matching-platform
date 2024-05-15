@@ -17,7 +17,7 @@ const CustomModal = ({ type, show, onClose }) => {
         try {
             const response = await backendService.login(email, password);
 
-            if (response && response.jwt) {
+            if (response && response.token) {
 
                 localStorage.setItem('jwt', response.jwt);
                 console.log('Login successful:', response);

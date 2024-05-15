@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import VolNavbar from './VolNavbar';
 import './VolDashboard.css';
 import CustomCard from '../../components/card/CustomCard'; // Import the CustomCard component
@@ -64,26 +64,55 @@ const VolDashboard = () => {
     ];
     
 
-    return (
-        <div>          
-            {/* Render the cards */}
-            <div className="card-grid">
-              {sampleCardsData.map(card => (
-                <CustomCard
-                  key={card.id}
-                  imageUrl={card.imageUrl}
-                  title={card.title}
-                  description={card.description}
-                  location={card.location}
-                  organisation={card.organisation} // Add organisation
-                  datePosted={card.datePosted} // Add datePosted
-                  schedule={card.schedule} // Add schedule
-                  externalUrl={card.externalUrl} // Pass externalUrl as a prop
-                />
-              ))}
-            </div>
-        </div>
-    );
+   // State to manage which content to display
+   const [displayContent, setDisplayContent] = useState("cards");
+
+   // Function to handle table click events
+   const handleTableClick = (content) => {
+       setDisplayContent(content);
+   };
+
+   return (
+       <div>
+
+
+           {/* Tables */}
+           <div className="tables">
+               <table>
+                   <thead>
+                       <tr>
+                           <th onClick={() => handleTableClick("cards")}>Show Cards</th>
+                           <th onClick={() => handleTableClick("list")}>Show List</th>
+                       </tr>
+                   </thead>
+               </table>
+
+               {/* Render content based on selection */}
+               {displayContent === "cards" ? (
+                   <div className="card-grid">
+                       {sampleCardsData.map(card => (
+                           <CustomCard
+                               key={card.id}
+                               imageUrl={card.imageUrl}
+                               title={card.title}
+                               description={card.description}
+                               location={card.location}
+                               organisation={card.organisation}
+                               datePosted={card.datePosted}
+                               schedule={card.schedule}
+                               externalUrl={card.externalUrl}
+                           />
+                       ))}
+                   </div>
+               ) : (
+                   <div className="list-content">
+                       {/* Render your list content here */}
+                       <p>This is the list content.</p>
+                   </div>
+               )}
+           </div>
+       </div>
+   );
 };
 
 export default VolDashboard;

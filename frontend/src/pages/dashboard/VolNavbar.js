@@ -7,7 +7,7 @@ const VolNavbar = () => {
   return (
     <>
       <Navbar bg="light" expand="lg" className='custom-navbar'>
-        <Navbar.Brand>Logo</Navbar.Brand>
+        <Navbar.Brand>hi</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

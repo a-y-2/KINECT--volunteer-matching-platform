@@ -7,10 +7,11 @@ import VolMyProfile from './pages/dashboard/VolMyProfile';
 import LandingNavbar from './components/navbar/LandingNavbar'; // Import LandingNavbar
 import VolNavbar from './pages/dashboard/VolNavbar'; // Import DashboardNavbar
 import Footer from './components/footer/Footer';
+import About from './pages/About';
+import Contact from './pages/Contact';
 
 const Organization = () => <h2>Organization Page</h2>;
-const About = () => <h2>About Us Page</h2>;
-const Contact = () => <h2>Contact Page</h2>;
+
 
 const App = () => {
   return (
@@ -69,8 +70,22 @@ const App = () => {
             }
           />      
           <Route path="/organization" element={<Organization />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" 
+          element={
+            <>
+              <LandingNavbar />
+              <About/>
+              <Footer />
+            </>
+          } />
+          <Route path="/contact" 
+           element={
+            <>
+              <LandingNavbar />
+              <Contact />
+              <Footer />
+            </>
+          } />
         </Routes>
       </div>
     </Router>
