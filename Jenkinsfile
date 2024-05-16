@@ -21,6 +21,13 @@ pipeline {
             // sh 'docker build -t ${IMAGE_NAME}:${IMAGE_TAG} .'
             // sh 'docker login -u ${DOCKER_HUB_USERNAME} -p ${DOCKER_HUB_PASSWORD}'
             // sh 'docker push ${IMAGE_NAME}:${IMAGE_TAG}'
+
+            // Find existing container with the image name
+            def containerId = sh(script: 'docker ps -a -f name=ayushi988/kinect-frontend --format "{{.ID}}"', returnStdout: true).trim()
+            if (containerId) {
+            // Stop and remove the container if found
+            sh "docker stop $containerId && docker rm $containerId"
+            }
             IMAGE_NAME=docker.build "ayushi988/kinect-frontend"
             docker.withRegistry('','DockerHubCred'){
                 IMAGE_NAME.push()
@@ -37,6 +44,12 @@ pipeline {
       steps {
         dir('backend') {
           script {
+                // Find existing container with the image name
+            def containerId = sh(script: 'docker ps -a -f name=ayushi988/kinect --format "{{.ID}}"', returnStdout: true).trim()
+            if (containerId) {
+            // Stop and remove the container if found
+            sh "docker stop $containerId && docker rm $containerId"
+            }
             IMAGE_NAME=docker.build "ayushi988/kinect"
             docker.withRegistry('','DockerHubCred'){
                 IMAGE_NAME.push()
