@@ -1,6 +1,6 @@
 ---
 - name: Deploy kinect app to minikube
-  hosts: all
+  hosts: localhost
   tasks:
     # - name: delete previous frontend deployment
     #   shell: kubectl delete -f ../kubernetes-config/kinect-frontend.yaml
