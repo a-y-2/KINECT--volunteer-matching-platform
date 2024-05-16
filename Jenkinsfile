@@ -1,25 +1,25 @@
 pipeline {
   agent any
 
-    environment {
-        KUBECONFIG = credentials('kubeconfig') // Reference the kubeconfig credential
-    }
+//     environment {
+//         KUBECONFIG = credentials('kubeconfig') // Reference the kubeconfig credential
+//     }
 
-  stages {
+//   stages {
 
-    stage('Check Kubernetes Cluster Reachability') {
-            steps {
-                script {
-                    try {
-                        // Run a kubectl command to check cluster connectivity
-                        def kubectlOutput = sh(script: 'kubectl get nodes', returnStdout: true).trim()
-                        echo "Kubectl Output: ${kubectlOutput}"
-                    } catch (Exception e) {
-                        error("Failed to reach Kubernetes cluster: ${e.message}")
-                    }
-                }
-            }
-        }
+//     stage('Check Kubernetes Cluster Reachability') {
+//             steps {
+//                 script {
+//                     try {
+//                         // Run a kubectl command to check cluster connectivity
+//                         def kubectlOutput = sh(script: 'kubectl get nodes', returnStdout: true).trim()
+//                         echo "Kubectl Output: ${kubectlOutput}"
+//                     } catch (Exception e) {
+//                         error("Failed to reach Kubernetes cluster: ${e.message}")
+//                     }
+//                 }
+//             }
+//         }
     //This stage checks out the code from a Git repository using the git step.
     stage('Git Pull') {
         steps {
