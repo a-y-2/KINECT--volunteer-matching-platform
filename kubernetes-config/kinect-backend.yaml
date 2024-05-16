@@ -24,11 +24,6 @@ spec:
                 secretKeyRef:
                   name: kinect-backend-secret
                   key: MONGODB_URI
-            # - name: PORT
-            #   valueFrom:
-            #     secretKeyRef:
-            #       name: kinect-backend-secret
-            #       key: PORT
 ---
 apiVersion: v1
 kind: Service
