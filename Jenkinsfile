@@ -1,7 +1,25 @@
 pipeline {
   agent any
 
+    environment {
+        KUBECONFIG = credentials('kubeconfig') // Reference the kubeconfig credential
+    }
+
   stages {
+
+    stage('Check Kubernetes Cluster Reachability') {
+            steps {
+                script {
+                    try {
+                        // Run a kubectl command to check cluster connectivity
+                        def kubectlOutput = sh(script: 'kubectl get nodes', returnStdout: true).trim()
+                        echo "Kubectl Output: ${kubectlOutput}"
+                    } catch (Exception e) {
+                        error("Failed to reach Kubernetes cluster: ${e.message}")
+                    }
+                }
+            }
+        }
     //This stage checks out the code from a Git repository using the git step.
     stage('Git Pull') {
         steps {
@@ -60,26 +78,12 @@ pipeline {
     }
 
     stage('Deploy with Ansible') {
-            steps {
-                script {
-                    // Create a temporary inventory file
-                    writeFile file: 'ansible-deploy/inventory', text: '''
-                    [local]
-                    localhost ansible_connection=local
-
-                    [local:vars]
-                    ansible_user=ayushi
-                    ansible_ssh_pass=ayushi
-                    ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-                    '''
-
-                    // Run the Ansible playbook with verbose logging
-                    sh '''
-                    cd ansible-deploy
-                    ansible-playbook -i inventory ansible-book.yml -vvv
-                    '''
-                }
-            }
+      steps {
+        script {
+            ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: false, installation: 'Ansible', inventory: 'ansible-deploy/inventory',
+            playbook: 'ansible-deploy/ansible-book.yml', sudoUser: null
         }
+      }
+    }
   }
 }
