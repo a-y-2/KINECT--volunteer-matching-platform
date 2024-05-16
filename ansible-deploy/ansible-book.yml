@@ -12,7 +12,7 @@
     #   shell: kubectl delete -f ../kubernetes-config/kinect-backend-secret.yaml
 
     - name: apply secret
-      shell: kubectl apply -f ../kubernetes-config/kinect-backend-secret.yaml --validate=false
+      shell: kubectl apply -f ../kubernetes-config/kinect-backend-secret.yaml 
 
     - name: apply backend
       shell: kubectl apply -f ../kubernetes-config/kinect-backend.yaml
