@@ -8,8 +8,8 @@
     # - name: delete previous backend deployment
     #   shell: kubectl delete -f ../kubernetes-config/kinect-backend.yaml
 
-    # - name: delete previous secret
-    #   shell: kubectl delete -f ../kubernetes-config/kinect-backend-secret.yaml
+    - name: delete previous secret
+      shell: kubectl delete -f ../kubernetes-config/kinect-backend-secret.yaml
 
     - name: apply secret
       shell: kubectl apply -f ../kubernetes-config/kinect-backend-secret.yaml 
