@@ -73,13 +73,12 @@ pipeline {
                     ansible_ssh_common_args='-o StrictHostKeyChecking=no'
                     '''
 
-                    // Run the Ansible playbook
+                    // Run the Ansible playbook with verbose logging
                     sh '''
                     cd ansible-deploy
-                    ansible-playbook -i inventory ansible-book.yml
+                    ansible-playbook -i inventory ansible-book.yml -vvv
                     '''
                 }
             }
-        }
   }
 }
