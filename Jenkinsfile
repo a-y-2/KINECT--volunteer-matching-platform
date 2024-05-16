@@ -62,6 +62,18 @@ pipeline {
     stage('Deploy with Ansible') {
             steps {
                 script {
+                    // Create a temporary inventory file
+                    writeFile file: 'ansible-deploy/inventory', text: '''
+                    [local]
+                    localhost ansible_connection=local
+
+                    [local:vars]
+                    ansible_user=ayushi
+                    ansible_ssh_pass=ayushi
+                    ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+                    '''
+
+                    // Run the Ansible playbook
                     sh '''
                     cd ansible-deploy
                     ansible-playbook -i inventory ansible-book.yml
