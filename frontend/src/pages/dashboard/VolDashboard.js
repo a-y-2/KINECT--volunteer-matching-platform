@@ -1,6 +1,5 @@
 
 import React, {useState} from 'react';
-import React from 'react';
 import VolNavbar from './VolNavbar';
 import './VolDashboard.css';
 import CustomCard from '../../components/card/CustomCard'; // Import the CustomCard component
