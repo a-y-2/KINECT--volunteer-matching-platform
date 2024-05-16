@@ -1,6 +1,6 @@
-// ansible_host=localhost
-// ansible_user=ayushi
-// ansible_ssh_pass=ayushi
-// ansible_ssh_common_args='-o StrictHostKeyChecking=no'
-[localhost]
-ayushi ansible_connection=local
+ansible_host=localhost
+ansible_user=ayushi
+ansible_ssh_pass=ayushi
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+// [localhost]
+// ayushi ansible_connection=local
