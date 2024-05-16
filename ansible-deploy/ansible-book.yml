@@ -18,7 +18,7 @@
       shell: kubectl apply -f ../kubernetes-config/kinect-frontend-configmap.yaml 
 
     - name: apply ingress
-    shell: kubectl apply -f ../kubernetes-config/kinect-ingress.yaml 
+      shell: kubectl apply -f ../kubernetes-config/kinect-ingress.yaml 
 
     - name: apply backend
       shell: kubectl apply -f ../kubernetes-config/kinect-backend.yaml
