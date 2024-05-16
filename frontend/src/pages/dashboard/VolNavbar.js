@@ -7,15 +7,7 @@ const VolNavbar = () => {
   return (
     <>
       <Navbar bg="light" expand="lg" className='custom-navbar'>
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
         <Navbar.Brand>hi</Navbar.Brand>
-=======
-        <Navbar.Brand>Logo</Navbar.Brand>
->>>>>>> Stashed changes
-=======
-        <Navbar.Brand>Logo</Navbar.Brand>
->>>>>>> Stashed changes
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
@@ -42,12 +34,6 @@ const handleLogout = () => {
   // Implement logout functionality here
 };
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 export default VolNavbar;
-=======
-export default VolNavbar;
->>>>>>> Stashed changes
-=======
-export default VolNavbar;
->>>>>>> Stashed changes
+

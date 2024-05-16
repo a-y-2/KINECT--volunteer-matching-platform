@@ -1,11 +1,6 @@
-<<<<<<< Updated upstream
+
 import React, {useState} from 'react';
-=======
 import React from 'react';
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 import VolNavbar from './VolNavbar';
 import './VolDashboard.css';
 import CustomCard from '../../components/card/CustomCard'; // Import the CustomCard component
@@ -69,10 +64,7 @@ const VolDashboard = () => {
             "externalUrl": "https://example.com/senior-center"
         }
     ];
-    
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
    // State to manage which content to display
    const [displayContent, setDisplayContent] = useState("cards");
 
@@ -122,9 +114,6 @@ const VolDashboard = () => {
            </div>
        </div>
    );
-=======
-=======
->>>>>>> Stashed changes
     return (
         <div>          
             {/* Render the cards */}
@@ -145,7 +134,6 @@ const VolDashboard = () => {
             </div>
         </div>
     );
->>>>>>> Stashed changes
 };
 
 export default VolDashboard;
