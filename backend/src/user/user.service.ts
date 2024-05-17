@@ -37,7 +37,7 @@
 //   }
 // }
 
-import { Injectable } from '@nestjs/common';
+import { Injectable,Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.model';
 import { CreateUserDto } from './user.dto';
@@ -45,6 +45,14 @@ import * as bcrypt from 'bcryptjs';
 
 @Injectable()
 export class UserService { // Renamed from UserService to NpoService
+  private readonly logger = new Logger(UserService.name);
+
+  getHello(): string {
+    this.logger.log('Hello world!'); // Default log level: info
+    this.logger.error('Something went wrong!', 'Some trace');
+    this.logger.warn('This is a warning message');
+    return 'Hello World!';
+  }
   constructor(@InjectModel(User.name) private readonly userModel: any) {} // Inject Npo model
 
   async register(createUserDto: CreateUserDto): Promise<UserDocument> {

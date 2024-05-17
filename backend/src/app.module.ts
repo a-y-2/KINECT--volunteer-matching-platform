@@ -16,7 +16,8 @@ import { NpoProfileModule } from './npo-profile/npo-profile.module';
 import { NpoAuthModule } from './auth/npo-auth.module';
 // import { NpoOpportunityModule } from './npo-profile/opportunity.module';
 // import { CorsModule } from '@nestjs/common';
-
+import { winstonConfig } from '../winston-config';
+import { WinstonModule } from 'nest-winston';
 
 
 
@@ -37,7 +38,8 @@ import { NpoAuthModule } from './auth/npo-auth.module';
             //   optionsSuccessStatus: 204,
             // }),
             MongooseModule.forRoot('mongodb+srv://ayushiprasad:aglV79cJViNiN38b@cluster0.d5sgvbv.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'),
-            UserModule,  
+            UserModule, 
+            WinstonModule.forRoot(winstonConfig), 
             AuthModuleUser, 
             AppModule,
             AuthModuleNpo,
