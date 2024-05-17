@@ -9,7 +9,7 @@ import { CreateUserProfileDto } from './user-profile.dto';
 
 @Injectable()
 export class UserProfileService {
-  private readonly logger = new Logger(UserProfileService.name);
+  
   constructor(
     //@InjectLogger(UserProfileService.name) private readonly logger: Logger,
     @InjectModel(UserProfile.name)
@@ -84,11 +84,11 @@ export class UserProfileService {
       throw new NotFoundException('User profile not found');
     }
 
-  this.logger.log(`userProfile.user._id: ${userProfile.user._id.toString()}`);
-    this.logger.log(`loggedInUserId: ${loggedInUserId}`);
-    this.logger.log(`Comparison result: ${userProfile.user._id.toString() !== loggedInUserId}`);
-    this.logger.log(`userProfile.user._id data type: ${typeof userProfile.user._id}`);
-this.logger.log(`loggedInUserId data type: ${typeof loggedInUserId}`);
+//   this.logger.log(`userProfile.user._id: ${userProfile.user._id.toString()}`);
+//     this.logger.log(`loggedInUserId: ${loggedInUserId}`);
+//     this.logger.log(`Comparison result: ${userProfile.user._id.toString() !== loggedInUserId}`);
+//     this.logger.log(`userProfile.user._id data type: ${typeof userProfile.user._id}`);
+// this.logger.log(`loggedInUserId data type: ${typeof loggedInUserId}`);
 
 
     if (userProfile.user._id.toString() !== loggedInUserId.toString()) {
