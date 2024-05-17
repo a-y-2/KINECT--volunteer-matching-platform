@@ -7,7 +7,7 @@
 
 # COPY . .
 
-# RUN npm run build  # build command for NestJS
+# RUN npm run build 
 
 # FROM node:18-alpine
 
@@ -17,11 +17,12 @@
 
 # EXPOSE 3000  
 
-# CMD [ "npm", "run", "start:prod" ]  #start command for production
+# CMD [ "npm", "run", "start:prod" ]  
 
 # Use a multi-stage build to reduce image size
 # Stage 1: Install dependencies and build the app
-FROM node:14-alpine as build
+# Stage 1: Build the NestJS application
+FROM node:18-alpine AS builder
 
 # Set the working directory
 WORKDIR /app
@@ -37,7 +38,7 @@ COPY . .
 RUN npm run build
 
 # Stage 2: Create the production image
-FROM node:14-alpine
+FROM node:18-alpine
 
 # Set the working directory
 WORKDIR /app
@@ -47,7 +48,7 @@ COPY package*.json ./
 RUN npm install --only=production
 
 # Copy the build output and other necessary files from the build stage
-COPY --from=build /app/dist ./dist
+COPY --from=builder /app/dist ./dist
 
 # Expose the port the app runs on
 EXPOSE 3000
