@@ -1,6 +1,6 @@
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); /* Adjust the minimum and maximum card width as needed */
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr)); 
     gap: 20px; 
     margin-top: 50px;
     margin-left: 250px;
@@ -46,5 +46,20 @@
   
   .tables th.active:hover {
     background-color: #0056b3;
+  }
+
+  #dashboard-tabs {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%; 
+  }
+  
+  .tab-content {
+    text-align: center;
+  }
+  
+  .tab {
+    width: 150px; 
   }
   

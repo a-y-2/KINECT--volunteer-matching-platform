@@ -2,7 +2,7 @@ import React from 'react';
 import Card from 'react-bootstrap/Card';
 import Button from 'react-bootstrap/Button';
 
-function CustomCard({ imageUrl, organisation, title, description, location, schedule, datePosted, externalUrl }) {
+function CustomCard({ imageUrl, organization, title, description, location, schedule, datePosted, url }) {
   return (
     <Card style={{ width: '18rem' }}>
        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
@@ -23,7 +23,7 @@ function CustomCard({ imageUrl, organisation, title, description, location, sche
         <hr />
         <Card.Text>{description}</Card.Text>
         <hr />
-        <Card.Text><strong>Organisation:</strong> {organisation}</Card.Text>
+        <Card.Text><strong>Organization:</strong> {organization}</Card.Text>
         <hr />
         <Card.Text><strong>Location:</strong> {location}</Card.Text>
         <Card.Text><strong>Schedule:</strong> {schedule}</Card.Text>
@@ -31,7 +31,7 @@ function CustomCard({ imageUrl, organisation, title, description, location, sche
       </Card.Body>
       <Card.Footer className="d-flex justify-content-center">
         {/* Anchor tag with href attribute set to the external URL */}
-        <a href={externalUrl} target="_blank" rel="noopener noreferrer">
+        <a href={url} target="_blank" rel="noopener noreferrer">
           <Button variant="primary">Know more</Button>
         </a>
       </Card.Footer>

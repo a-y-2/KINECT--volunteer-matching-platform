@@ -5,16 +5,30 @@ import Carousel from 'react-bootstrap/Carousel'; // Import Carousel component
 import './Volunteer.css';
 
 const Volunteer = () => {
+    const [modalType, setModalType] = useState('');
     const [showLoginModal, setShowLoginModal] = useState(false);
     const [showRegisterModal, setShowRegisterModal] = useState(false);
 
-    const handleShowLoginModal = () => {
+    const handleShowVolunteerLoginModal = () => {
         setShowLoginModal(true);
+        setModalType('volunteer-login');
+    };
+    
+    const handleShowVolunteerRegisterModal = () => {
+        setShowRegisterModal(true);
+        setModalType('volunteer-registration');
     };
 
-    const handleShowRegisterModal = () => {
-        setShowRegisterModal(true);
+    const handleShowNpoLoginModal = () => {
+        setShowLoginModal(true);
+        setModalType('npo-login');
     };
+    
+    const handleShowNpoRegisterModal = () => {
+        setShowRegisterModal(true);
+        setModalType('npo-registration');
+    };
+    
 
     const handleCloseModal = () => {
         setShowLoginModal(false);
@@ -77,13 +91,13 @@ const Volunteer = () => {
                                     <div className="flex justify-center md:justify-start mb-4 md:mb-0">
                                         <Button
                                             className="bg-yellow-200 hover:bg-indigo-100 mr-4 volunteer-button"
-                                            onClick={handleShowRegisterModal}
+                                            onClick={handleShowVolunteerRegisterModal}
                                         >
                                             Register
                                         </Button>
                                         <Button
                                             className="bg-blue-500 hover:bg-blue-100 volunteer-button"
-                                            onClick={handleShowLoginModal}
+                                            onClick={handleShowVolunteerLoginModal}
                                         >
                                             Login
                                         </Button>
@@ -94,13 +108,13 @@ const Volunteer = () => {
                                     <div className="flex justify-center md:justify-start">
                                         <Button
                                             className="bg-yellow-200 hover:bg-indigo-100 mr-4 volunteer-button"
-                                            onClick={handleShowRegisterModal}
+                                            onClick={handleShowNpoRegisterModal}
                                         >
                                             Register
                                         </Button>
                                         <Button
                                             className="bg-blue-500 hover:bg-blue-100 volunteer-button"
-                                            onClick={handleShowLoginModal}
+                                            onClick={handleShowNpoLoginModal}
                                         >
                                             Login
                                         </Button>
@@ -108,8 +122,7 @@ const Volunteer = () => {
                                 </div>
                             </div>
                         {/* Render the modals */}
-                        <CustomModal type="login" show={showLoginModal} onClose={handleCloseModal} />
-                        <CustomModal type="register" show={showRegisterModal} onClose={handleCloseModal} />
+                        <CustomModal type={modalType} show={showLoginModal || showRegisterModal} onClose={handleCloseModal} />
                     </div>
                 </div>
             </div>
