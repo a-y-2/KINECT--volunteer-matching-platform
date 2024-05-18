@@ -61,11 +61,9 @@ pipeline {
 
     stage('Deploy with Ansible') {
       steps {
-        script {
-            ansiblePlaybook becomeUser: null, colorized: true, disableHostKeyChecking: false, installation: 'Ansible', inventory: 'ansible-deploy/inventory',
-            playbook: 'ansible-deploy/ansible-book.yml', sudoUser: null
+          sh 'sudo ansible-playbook -vvv ansible-book.yml -i ansible-deploy/inventory'
         }
-      }
     }
+
   }
 }

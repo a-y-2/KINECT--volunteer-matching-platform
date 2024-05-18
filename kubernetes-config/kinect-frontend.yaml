@@ -68,4 +68,4 @@ spec:
     - name: http
       port: 2004
       targetPort: 2004
-      nodePort: 30000
+      nodePort: 30003
