@@ -61,15 +61,9 @@ pipeline {
 
     stage('Deploy with Ansible') {
       steps {
-<<<<<<< Updated upstream
-        sh 'pwd'
-        sh 'ansible-playbook -vvv ansible-deploy/ansible-book.yml -i ansible-deploy/inventory'
-      }
-=======
           sh 'cd ansible-deploy'
           sh 'ansible-playbook -vvv ansible-book.yml -i ansible-deploy/inventory'
         }
->>>>>>> Stashed changes
     }
 
   }
