@@ -2,28 +2,55 @@
 - name: Deploy kinect app to minikube
   hosts: localhost
   connection: local
-  become: yes
+  become: true
+  vars:
+    ansible_python_interpreter: /home/ayushi/Desktop/sem2/spe/projects/KINECT--volunteer-matching-platform/venv/bin/python
+  collections:
+  collections:
+    - community.kubernetes
+
   tasks:
-    # - name: delete previous frontend deployment
-    #   shell: kubectl delete -f ../kubernetes-config/kinect-frontend.yaml
+  - name: Create minikube namespace
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config
+      definition:
+        apiVersion: v1
+        kind: Namespace
+        metadata:
+          name: minikube
 
-    # - name: delete previous backend deployment
-    #   shell: kubectl delete -f ../kubernetes-config/kinect-backend.yaml
+  - name: Apply secret
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config 
+      definition: "{{ lookup('file', '/home/ayushi/Desktop/sem2/spe/projects/KINECT--volunteer-matching-platform/kubernetes-config/kinect-backend-secret.yaml') }}"
+      namespace: minikube
 
-    # - name: delete previous secret
-    #   shell: kubectl delete -f ../kubernetes-config/kinect-backend-secret.yaml
+  - name: Apply configmap
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config 
+      definition: "{{ lookup('file', '../kubernetes-config/kinect-frontend-configmap.yaml') }}"
+      namespace: minikube
 
-    - name: apply secret
-      shell: kubectl apply -f ../kubernetes-config/kinect-backend-secret.yaml --validate=false
+  - name: Apply ingress (if needed)
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config 
+      definition: "{{ lookup('file', '../kubernetes-config/kinect-ingress.yaml') }}"
+      namespace: minikube
 
-    - name: apply configmap
-      shell: kubectl apply -f ../kubernetes-config/kinect-frontend-configmap.yaml 
+  - name: Apply backend deployment
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config 
+      definition: "{{ lookup('file', '../kubernetes-config/kinect-backend.yaml') }}"
+      namespace: minikube
 
-    - name: apply ingress
-      shell: kubectl apply -f ../kubernetes-config/kinect-ingress.yaml 
-
-    - name: apply backend
-      shell: kubectl apply -f ../kubernetes-config/kinect-backend.yaml
-
-    - name: apply frontend
-      shell: kubectl apply -f ../kubernetes-config/kinect-frontend.yaml
+  - name: Apply frontend deployment
+    k8s:
+      state: present
+      kubeconfig: /home/ayushi/.kube/config 
+      definition: "{{ lookup('file', '../kubernetes-config/kinect-frontend.yaml') }}"
+      namespace: minikube
