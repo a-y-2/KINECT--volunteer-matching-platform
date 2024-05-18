@@ -24,7 +24,8 @@
     k8s:
       state: present
       kubeconfig: /home/ayushi/.kube/config 
-      definition: "{{ lookup('file', '/home/ayushi/Desktop/sem2/spe/projects/KINECT--volunteer-matching-platform/kubernetes-config/kinect-backend-secret.yaml') }}"
+      # definition: "{{ lookup('file', '/home/ayushi/Desktop/sem2/spe/projects/KINECT--volunteer-matching-platform/kubernetes-config/kinect-backend-secret.yaml') }}"
+      definition: "{{ lookup('file', '/var/lib/jenkins/workspace/kinect/kubernetes-config/kinect-backend-secret.yaml') }}"
       namespace: minikube
 
   - name: Apply configmap
