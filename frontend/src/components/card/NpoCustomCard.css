@@ -1,0 +1,13 @@
+.custom-card-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.custom-card {
+  width: 20rem;
+  margin: 10px;
+}
+

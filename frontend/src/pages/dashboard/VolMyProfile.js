@@ -1,22 +1,126 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './VolMyProfile.css'; // Import custom styles
+import { Button } from 'react-bootstrap';
+import { useAuth } from '../../utilities/AuthContext';
+import BackendService from '../../services/BackendService';
+
+const backendService = new BackendService();
 
 const VolMyProfile = () => {
   const [isEditMode, setIsEditMode] = useState(false);
-  const [phone, setPhone] = useState('(239) 816-9029');
-  const [city, setCity] = useState('San Francisco');
-  const [state, setState] = useState('California');
-  const [zipcode, setZipcode] = useState('94103');
-  const [daysAvailable, setDaysAvailable] = useState('Monday, Wednesday, Friday');
+
+  const [phone, setPhone] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zipcode, setZipcode] = useState('');
+  const [daysAvailable, setDaysAvailable] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const { isAuthenticated, userId, profileId } = useAuth();
+
+  useEffect(() => {
+    console.log('IsAuthenticated:', isAuthenticated);
+    console.log('UserId:', userId);
+    console.log('ProfileId:', profileId);
+  }, []);
+
+  const [profileData, setProfileData] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  const [newSkill, setNewSkill] = useState('');
+  const [newCertificate, setNewCertificate] = useState('');
+
+  useEffect(() => {
+    fetchUserProfile();
+  }, [profileId]);
+
+  // const address = null;
+
+  const fetchUserProfile = async () => {
+    try {
+      if (profileId) {
+        const profileDetail = await backendService.fetchProfileDetailIdById(profileId);
+        setProfileData(profileDetail);
+        setPhone(profileDetail.phone || '');
+        setCity(profileDetail.city || '');
+        setState(profileDetail.state || '');
+        setZipcode(profileDetail.zipcode || '');
+        setDaysAvailable(profileDetail.daysOfWeekAvailable.join(', ') || '');
+        setAddress((profileData?.city || '-') + ", " + (profileData?.state || '-'));
+        console.log(address);
+      }
+    } catch (error) {
+      console.error('Error fetching user profile:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleCreateProfile = () => {
+    setIsEditMode(true);
+  };
 
   const handleEdit = () => {
     setIsEditMode(true);
   };
 
-  const handleSaveChanges = () => {
-    setIsEditMode(false);
-    // Perform save operation here, if necessary
+  const handleSaveChanges = async () => {
+    const updatedProfileData = {
+      photo: 'examplePhotoUrl', // Replace with actual photo URL if available
+      phone,
+      city,
+      state,
+      zipcode,
+      daysOfWeekAvailable: daysAvailable.split(',').map(day => day.trim()),
+      skills: profileData?.skills || [],
+      past: 'Example past experience', // Replace with actual past experience if available
+      motivation: 'Example motivation', // Replace with actual motivation if available
+      certificates: profileData?.certificates || []
+    };
+
+    try {
+      await backendService.updateProfileDetailIdById(profileId, updatedProfileData);
+      setIsEditMode(false);
+      fetchUserProfile(); 
+    } catch (error) {
+      console.error('Error saving profile changes:', error);
+    }
   };
+
+  const handleAddSkill = () => {
+    setProfileData(prevProfileData => ({
+      ...prevProfileData,
+      skills: [...(prevProfileData.skills || []), newSkill]
+    }));
+    setNewSkill('');
+  };
+
+  const handleAddCertificate = () => {
+    setProfileData(prevProfileData => ({
+      ...prevProfileData,
+      certificates: [...(prevProfileData.certificates || []), newCertificate]
+    }));
+    setNewCertificate('');
+  };
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  const renderAddItemField = (placeholder, value, onChange, addItemFunction) => (
+    <div>
+      <input
+        type="text"
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        placeholder={placeholder}
+      />
+      <Button variant="primary" onClick={addItemFunction}>Add</Button>
+    </div>
+  );
+
+  const fullName = (profileData?.user?.firstName || '-') + ' ' + (profileData?.user?.lastName || '-');
+  // const address = (profileData?.user?.city || '-') + ", " + (profileData?.user?.state || '-');
 
   return (
     <div className="container">
@@ -28,9 +132,9 @@ const VolMyProfile = () => {
                 <div className="d-flex flex-column align-items-center text-center">
                   <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Volunteer" className="rounded-circle" width="150" />
                   <div className="mt-3">
-                    <h4>John Doe</h4>
-                    <p className="text-secondary mb-1">Volunteer</p>
-                    <p className="text-muted font-size-sm">Bay Area, San Francisco, CA</p>
+                    <h4>{fullName}</h4>
+                    {/* <p className="text-secondary mb-1">{fullName}</p> */}
+                    <p className="text-muted font-size-sm">{address}</p>
                     <div className='btn-group'>
                       <button className="btn btn-primary">Follow</button>
                       <button className="btn btn-outline-primary">Message</button>
@@ -39,38 +143,10 @@ const VolMyProfile = () => {
                 </div>
               </div>
             </div>
-            <div className="card mt-3">
-                {/* SOCIAL LINKS */}
-                <ul className="list-group list-group-flush">
-                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0"><i className="feather feather-globe mr-2 icon-inline"></i>Website</h6>
-                    <span className="text-secondary">https://bootdey.com</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0"><i className="feather feather-github mr-2 icon-inline"></i>Github</h6>
-                    <span className="text-secondary">bootdey</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0"><i className="feather feather-twitter mr-2 icon-inline text-info"></i>Twitter</h6>
-                    <span className="text-secondary">@bootdey</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0"><i className="feather feather-instagram mr-2 icon-inline text-danger"></i>Instagram</h6>
-                    <span className="text-secondary">bootdey</span>
-                    </li>
-                    <li className="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 className="mb-0"><i className="feather feather-facebook mr-2 icon-inline text-primary"></i>Facebook</h6>
-                    <span className="text-secondary">bootdey</span>
-                    </li>
-                </ul>
-                </div>
-            </div>
-            <div className="col-md-8">
+          </div>
+          <div className="col-md-8">
             <div className="card mb-3">
-              {/* PERSONAL-DETAILS */}
               <div className="card-body details">
-                {/* Existing content */}
-                <hr />
                 <div className="row">
                   <div className="col-sm-3">
                     <h6 className="mb-0">Phone</h6>
@@ -83,7 +159,7 @@ const VolMyProfile = () => {
                         onChange={(e) => setPhone(e.target.value)}
                       />
                     ) : (
-                      phone
+                      profileData?.phone || '-'
                     )}
                   </div>
                 </div>
@@ -100,7 +176,7 @@ const VolMyProfile = () => {
                         onChange={(e) => setCity(e.target.value)}
                       />
                     ) : (
-                      city
+                      profileData?.city || '-'
                     )}
                   </div>
                 </div>
@@ -117,7 +193,7 @@ const VolMyProfile = () => {
                         onChange={(e) => setState(e.target.value)}
                       />
                     ) : (
-                      state
+                      profileData?.state || '-'
                     )}
                   </div>
                 </div>
@@ -134,7 +210,7 @@ const VolMyProfile = () => {
                         onChange={(e) => setZipcode(e.target.value)}
                       />
                     ) : (
-                      zipcode
+                      profileData?.zipcode || '-'
                     )}
                   </div>
                 </div>
@@ -151,78 +227,56 @@ const VolMyProfile = () => {
                         onChange={(e) => setDaysAvailable(e.target.value)}
                       />
                     ) : (
-                      daysAvailable
+                      profileData?.daysOfWeekAvailable?.join(', ') || '-'
                     )}
                   </div>
                 </div>
-                <hr />
-                {/* Edit button */}
+              </div>
+            </div>
+            <div className="row gutters-sm">
+              <div className="col-sm-6 mb-3">
+                <div className="card h-100">
+                  <div className="card-body">
+                    <h5 className="card-title">Skills</h5>
+                    {profileData?.skills?.map((skill, index) => (
+                      <div key={index}>{skill}</div>
+                    ))}
+                    {isEditMode && renderAddItemField("Add Skill", newSkill, setNewSkill, handleAddSkill)}
+                  </div>
+                </div>
+              </div>
+              <div className="col-sm-6 mb-3">
+                <div className="card h-100">
+                  <div className="card-body">
+                    <h5 className="card-title">Certificates</h5>
+                    {profileData?.certificates?.map((certificate, index) => (
+                      <div key={index}>
+                        <a href={certificate} target="_blank" rel="noopener noreferrer">{`Certificate ${index + 1}`}</a>
+                      </div>
+                    ))}
+                    {isEditMode && renderAddItemField("Add Certificate link", newCertificate, setNewCertificate, handleAddCertificate)}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="row">
+              <div className="col-sm-12">
                 {isEditMode ? (
-                  <button className="btn btn-primary" onClick={handleSaveChanges}>
+                  <Button variant="primary" onClick={handleSaveChanges}>
                     Save Changes
-                  </button>
+                  </Button>
                 ) : (
-                  <button className="btn btn-primary" onClick={handleEdit}>
+                  <Button variant="primary" onClick={handleEdit}>
                     Edit
-                  </button>
+                  </Button>
                 )}
               </div>
             </div>
-                <div className="row gutters-sm">
-                <div className="col-sm-6 mb-3">
-                    <div className="card h-100">
-                    {/* skills */}
-                    <div className="card-body skills">
-                        <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2"></i>Skills</h6>
-                        <hr />
-                        <div className='skill-list'>
-                            <div className="mb-3">
-                                <small>Web Design</small>
-                            </div>
-                            <div className="mb-3">
-                                <small>Website Markup</small>
-                            </div>
-                            <div className="mb-3">
-                                <small>One Page</small>
-                            </div>
-                            <div className="mb-3">
-                                <small>Mobile Template</small>
-                            </div>
-                            <div className="mb-3">
-                                <small>Backend API</small>
-                            </div>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
-                <div className="col-sm-6 mb-3">
-                    <div className="card h-100">
-                    <div className="card-body">
-                        <h6 className="d-flex align-items-center mb-3"><i className="material-icons text-info mr-2"></i>Certificates</h6>
-                        <hr />
-                        <div className='cert-list'>
-                            <div className="mb-3">
-                                <small>Certificate 1: <a href="https://www.example.com/certificate1">Certificate 1 URL</a></small>
-                            </div>
-                            <div className="mb-3">
-                                <small>Certificate 2: <a href="https://www.example.com/certificate2">Certificate 2 URL</a></small>
-                            </div>
-                            <div className="mb-3">
-                                <small>Certificate 3: <a href="https://www.example.com/certificate3">Certificate 3 URL</a></small>
-                            </div>
-                        </div>
-                    </div>
-
-                    </div>
-                </div>
-                </div>
-            </div>
-        
-            </div>
+          </div>
         </div>
+      </div>
     </div>
-  )
-};
+  );
+}
 
 export default VolMyProfile;
