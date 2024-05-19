@@ -37,4 +37,10 @@ const VolNavbar = () => {
   );
 };
 
+
+const handleLogout = () => {
+  // Implement logout functionality here
+};
+
 export default VolNavbar;
+

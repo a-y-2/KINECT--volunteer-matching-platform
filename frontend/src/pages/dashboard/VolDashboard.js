@@ -1,5 +1,7 @@
+
 import React, { useState, useEffect } from 'react';
 import { Tabs, Tab, Pagination } from 'react-bootstrap';
+
 import VolNavbar from './VolNavbar';
 import './VolDashboard.css';
 import CustomCard from '../../components/card/CustomCard';
@@ -29,6 +31,7 @@ const VolDashboard = () => {
             setCurrentScrapedPage(1); // Reset to the first page when switching tabs
         }
     };
+
 
     // Fetch Kinect Opportunities
     useEffect(() => {
@@ -82,6 +85,7 @@ const VolDashboard = () => {
         const startIndex = (currentPage - 1) * itemsPerPage;
         return items.slice(startIndex, startIndex + itemsPerPage);
     };
+
 
     return (
         <div>
@@ -165,6 +169,7 @@ const VolDashboard = () => {
                     </div>
                 </Tab>
             </Tabs>
+
         </div>
     );
 };

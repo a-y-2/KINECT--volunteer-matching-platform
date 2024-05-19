@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable,Logger} from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { User, UserDocument } from './user.model';
 import * as bcrypt from 'bcryptjs';
@@ -14,12 +14,19 @@ into other components (controllers, other services) using dependency injection.
 @Injectable()
 export class AuthService {
 
+  private readonly logger = new Logger(AuthService.name);
+
+ 
+
   //
   //This line defines the constructor of the AuthService class. It injects the user model and jwtservice using dependency injection:
   constructor(@InjectModel(User.name) private readonly userModel: any,
   private readonly jwtService: JwtService) {} //This declares a property named userModel and jwtService 
 
   async login(email: string, password: string):  Promise<{ token: string; message?: string }> {
+    
+      this.logger.log('entered the login function'); // Default log level: info
+     
     try {
       const user = await this.userModel.findOne({ email });
       if (!user) {
@@ -48,5 +55,9 @@ export class AuthService {
   }
 
 
+}
+
+function getHello() {
+  throw new Error('Function not implemented.');
 }
 

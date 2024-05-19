@@ -1,0 +1,325 @@
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"AuthService","level":"info","message":"Hello world!"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"AuthService","level":"info","message":"entered the login function"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"NestFactory","level":"info","message":"Starting Nest application..."}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"PassportModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"JwtModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"WinstonModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AppModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseCoreModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"MongooseModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleUser dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModuleNpo dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoAuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"AuthModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"NpoProfileModule dependencies initialized"}
+{"context":"InstanceLoader","level":"info","message":"UserProfileModule dependencies initialized"}
+{"context":"RoutesResolver","level":"info","message":"AppController {/}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/register, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/user}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"AuthController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/login, POST} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoController {/npo}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/register, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo/opportunity, GET} route"}
+{"context":"RoutesResolver","level":"info","message":"UserProfileController {/user-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/profileId/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/user-profile/:id, DELETE} route"}
+{"context":"RoutesResolver","level":"info","message":"NpoProfileController {/npo-profile}:"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile, POST} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, GET} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, PUT} route"}
+{"context":"RouterExplorer","level":"info","message":"Mapped {/npo-profile/:id, DELETE} route"}
+{"context":"NestApplication","level":"info","message":"Nest application successfully started"}
+{"context":"AuthService","level":"info","message":"entered the login function"}
