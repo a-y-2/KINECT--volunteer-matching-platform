@@ -63,3 +63,16 @@
     width: 150px; 
   }
   
+
+  .pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.card-grid, .kinect-opportunities {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}

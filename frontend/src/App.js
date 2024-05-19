@@ -22,7 +22,7 @@ const Organization = () => <h2>Organization Page</h2>;
 
 
 const App = () => {
-  const { isAuthenticated } = useAuth();
+  // const { isAuthenticated } = useAuth();
   return (
     <Router>
       <AuthProvider>

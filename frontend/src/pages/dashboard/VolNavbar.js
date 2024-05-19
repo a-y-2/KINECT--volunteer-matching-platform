@@ -29,8 +29,8 @@ const VolNavbar = () => {
           {/* Use Link instead of Nav.Link for navigation */}
           <Link to="/dashboard-opportunities" className="nav-link">Opportunities</Link>
           <Link to="/volunteer-profile" className="nav-link">My Profile</Link>
-          <Link to="/impacts" className="nav-link">Impacts</Link>
-          <Link to="/enrolled" className="nav-link">Enrolled</Link>
+          {/* <Link to="/impacts" className="nav-link">Impacts</Link> */}
+          {/* <Link to="/enrolled" className="nav-link">Enrolled</Link> */}
         </Nav>
       </div>
     </>

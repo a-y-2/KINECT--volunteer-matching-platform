@@ -1,7 +1,21 @@
 import axios from 'axios';
+
 class BackendService {
     constructor() {
         this.baseUrl = 'http://localhost:3000';
+        // Add request interceptor to add JWT token to headers
+        axios.interceptors.request.use(
+            (config) => {
+                const token = sessionStorage.getItem('jwt');
+                if (token) {
+                    config.headers['Authorization'] = `Bearer ${token}`;
+                }
+                return config;
+            },
+            (error) => {
+                return Promise.reject(error);
+            }
+        );
     }
 
     // user and npo login
@@ -18,10 +32,23 @@ class BackendService {
         }
     }
 
-    async fetchScrapedOpportunities(page = 1, pageSize = 10) {
+    async fetchScrapedOpportunities(page, pageSize) {
         try {
-            const response = await axios.get(`${this.baseUrl}/opportunities/all?page=${page}&pageSize=${pageSize}`);
-            console.log('Scraped Opportunities Response:', response.data);
+            const response = await axios.get(`${this.baseUrl}/opportunities/all`, {
+                params: { page, pageSize }
+            });
+            // console.log('Scraped Opportunities Response:', response.data);
+            return response.data;
+        } catch (error) {
+            console.error('Fetch Scraped Opportunities Error:', error);
+            throw new Error('Failed to fetch scraped opportunities');
+        }
+    }
+
+    async fetchScrapedOpportunitiesCount() {
+        try {
+            const response = await axios.get(`${this.baseUrl}/opportunities/count`);
+            // console.log('Scraped Opportunities Count:', response.data);
             return response.data;
         } catch (error) {
             console.error('Fetch Scraped Opportunities Error:', error);
@@ -51,7 +78,7 @@ class BackendService {
         }
     }
 
-    async fetchProfileDetailIdById(id){
+    async fetchProfileDetailIdById(id) {
         try {
             const response = await axios.get(`${this.baseUrl}/user-profile/${id}`);
             // console.log('Profile Details:', response.data);
@@ -60,17 +87,16 @@ class BackendService {
             console.error('Fetch Profile ID Error:', error);
             throw new Error('Failed to fetch profile ID');
         }
-    };
-
-    async updateProfileDetailIdById(profileData){
+    }
+    async updateProfileDetailIdById(profileId, profileData) {
         try {
-            const response = await axios.put(`${this.baseUrl}/user-profile`, profileData);
-            return response.data;
+          const response = await axios.put(`${this.baseUrl}/user-profile/${profileId}`, profileData);
+          return response.data;
         } catch (error) {
-            console.error('Fetch Profile ID Error:', error);
-            throw new Error('Failed to fetch profile ID');
+          console.error('Update Profile Error:', error);
+          throw new Error('Failed to update profile');
         }
-    };
+      }
 
     // user registration
     async registerVolunteer(volunteerData) {
@@ -96,7 +122,9 @@ class BackendService {
         }
     }
 
-    async getAllNpo() {
+
+
+    async getAllNpoOpportunities() {
         try {
             const response = await axios.get(`${this.baseUrl}/npo/opportunity`);
             console.log('NPO all organisation Response:', response.data);

@@ -2,53 +2,60 @@ import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import './NpoDashboard.css';
 import BackendService from '../../services/BackendService';
-import NpoCustomCard from '../../components/card/NpoCustomCard'
+import NpoCustomCard from '../../components/card/NpoCustomCard';
+import CreateOpportunityModal from '../../components/modal/CreateOpportunityModal';
 
 const NpoDashboard = () => {
-
   const [opportunityData, setOpportunityData] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   const handleCreateOpportunity = () => {
-    // Add your logic for creating an opportunity here
-    console.log("Creating opportunity...");
+    setShowModal(true);
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
 
   useEffect(() => {
-    const backendService = new BackendService(); // Create an instance of BackendService
+    const backendService = new BackendService();
 
     const fetchData = async () => {
       try {
-        const opportunityData = {}; // Assuming you have npoData to pass
-        const responseData = await backendService.getAllNpo(); // Call the getAllNpo method
-        setOpportunityData(responseData); // Assuming the response data is an array
+        const responseData = await backendService.getAllNpoOpportunities();
+        console.log(responseData);
+        setOpportunityData(responseData || []); 
       } catch (error) {
         console.error('Error fetching data:', error);
+        setOpportunityData([]); // Set to an empty array on error
       }
     };
 
     fetchData();
   }, []);
-  
+
   return (
     <div className="dashboard-container">
       <div className="dashboard-content">
-        {/* Render each opportunity using CustomCard component */}
-        {opportunityData.map(opportunity => (
-          <NpoCustomCard
-            key={opportunity._id}
-            title={opportunity.title}
-            description={opportunity.description}
-            skillsRequired={opportunity.skillsRequired}
-            startDate={opportunity.startDate}
-            endDate={opportunity.endDate}
-            location={opportunity.location}
-            contactEmail={opportunity.contactEmail}
-            website={opportunity.website}
-          />
-        ))}
+        {opportunityData.length > 0 ? (
+          opportunityData.map(opportunity => (
+            <NpoCustomCard
+              key={opportunity._id}
+              title={opportunity.title}
+              description={opportunity.description}
+              skillsRequired={opportunity.skillsRequired}
+              startDate={opportunity.startDate}
+              endDate={opportunity.endDate}
+              location={opportunity.location}
+              contactEmail={opportunity.contactEmail}
+              website={opportunity.website}
+            />
+          ))
+        ) : (
+          <p>No opportunities available</p>
+        )}
       </div>
-      
+
       <Button 
         variant="primary" 
         style={{ 
@@ -62,8 +69,9 @@ const NpoDashboard = () => {
       >
         Create Opportunity
       </Button>
+
+      <CreateOpportunityModal showModal={showModal} handleCloseModal={handleCloseModal} />
     </div>
-    
   );
 };
 
