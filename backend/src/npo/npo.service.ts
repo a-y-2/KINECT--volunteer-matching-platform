@@ -73,9 +73,9 @@ export class NpoService {
       const document = await this.npoModel.findOne({ 'npo._id': npoId });
 
       if (document) {
-        return true;
-      } else {
         return false;
+      } else {
+        return true;
       }
     } catch (error) {
       // Handle any errors (e.g., database connection issues, query errors)

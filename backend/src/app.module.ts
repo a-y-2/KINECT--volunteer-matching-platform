@@ -18,6 +18,7 @@ import { NpoAuthModule } from './auth/npo-auth.module';
 // import { CorsModule } from '@nestjs/common';
 import { winstonConfig } from '../winston-config';
 import { WinstonModule } from 'nest-winston';
+import { ScrapedOpportunityModule } from './data/scrapedopportunity.module';
 
 
 
@@ -47,7 +48,8 @@ import { WinstonModule } from 'nest-winston';
             UserProfileModule,
             AuthModule,
             NpoProfileModule,
-            NpoAuthModule,
+            ScrapedOpportunityModule,
+            NpoAuthModule
             // NpoOpportunityModule
   ],
   controllers: [AppController],
@@ -55,7 +57,7 @@ import { WinstonModule } from 'nest-winston';
     UserProfileModule,
     AuthModuleUser,
     AuthModule,
-    NpoAuthModule,NpoProfileModule,AuthModuleNpo,
+    NpoAuthModule,NpoProfileModule,AuthModuleNpo, ScrapedOpportunityModule
     // NpoOpportunityModule],
   //exports: [UserService],
 ]})
