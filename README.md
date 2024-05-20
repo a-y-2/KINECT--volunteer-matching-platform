@@ -169,16 +169,16 @@ cd into ansible-deploy folder
 sudo ansible-playbook -vvv ansible-book.yml -i inventory
 ```
 
-### Run the Jenkins build which runs the Jenkinsfile from the cloned repo and executes the stages
+#####Run the Jenkins build which runs the Jenkinsfile from the cloned repo and executes the stages
 
 ### After the job runs successfully, manually execute the port forwarding commands
 ```
 kubectl port-forward kinect-backend-deployment-865c79587f-qxvs4 -n minikube 3000:3000
 kubectl port-forward kinect-frontend-deployment-6b78b4fbb9-5559b -n minikube 2004:2004
 ```
-### The frontend will noe be accessible at port 2004 and backend at 3000.
+##### The frontend will now be accessible at port 2004 and backend at 3000.
 
-#Logging and metrics
+##Logging and metrics
 
 ```
 1.Install Elasticsearch on local(Refer online sources)
