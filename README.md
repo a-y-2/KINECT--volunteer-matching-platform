@@ -2,7 +2,7 @@
 
 ## Overview
 
-Kinect is a volunteer matching platform designed to connect volunteers with suitable opportunities. This platform is built with a Next.js backend, a React frontend, and has a DevOps pipeline implemented using Jenkins. The project is containerized using Docker and deployed using Ansible and Kubernetes.
+Kinect is a volunteer matching platform designed to connect volunteers with suitable opportunities. This platform is built with a Nest.js backend, a React frontend, and has a DevOps pipeline implemented using Jenkins. The project is containerized using Docker and deployed using Ansible and Kubernetes.
 
 ## Table of Contents
 
